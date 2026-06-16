@@ -1,1 +1,171 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>취업 면접 및 AI 검사 복기 센터</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #00854a;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #e1e4e6;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: var(--accent-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            width: fit-content;
+        }
+
+        .badge.interview { background: #e0f2fe; color: #0369a1; }
+        .badge.ai { background: #fef3c7; color: #d97706; }
+        .badge.ready { background: #f3f4f6; color: #9ca3af; }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: #111;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: block;
+            text-align: center;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .card:hover .btn {
+            background: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>취업 면접 & AI 역량검사 복기 아카이브</h1>
+        <div class="subtitle">학생들의 실전 면접 질문과 팁을 공유하고 기록하는 공간입니다.</div>
+    </header>
+
+    <div class="grid">
+        <!-- 1. DB하이텍 카드 -->
+        <div class="card">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">DB 하이텍</h2>
+                <p class="card-desc">오퍼레이터(제조/생산) 직무 기출 질문 및 실전 면접장 배치도, 합격 팁 정리</p>
+            </div>
+            <!-- ★ 중요: 위 구조에서 만든 db_hitek.html 파일로 바로 연결되는 링크입니다 -->
+            <a href="db_hitek.html" class="btn">복기 자료 보기</a>
+        </div>
+
+        <!-- 2. AI 역량검사 카드 (예시용) -->
+        <div class="card">
+            <div>
+                <span class="badge ai">AI 역량검사</span>
+                <h2 class="card-title">잡다(JOBDA) AI 검사</h2>
+                <p class="card-desc">성향 분석, 전략 게임 기출 유형 및 학생들이 직접 겪은 상황 복기</p>
+            </div>
+            <a href="ai_jobda.html" class="btn">복기 자료 보기</a>
+        </div>
+
+        <!-- 3. 추가 예정 카드 블록 -->
+        <div class="card" style="opacity: 0.6;">
+            <div>
+                <span class="badge ready">업데이트 예정</span>
+                <h2 class="card-title">추가 기업 링크</h2>
+                <p class="card-desc">새로운 기업 면접 자료가 접수되는 대로 업로드됩니다.</p>
+            </div>
+            <a href="#" class="btn" style="background: #9ca3af; cursor: not-allowed;">준비 중</a>
+        </div>
+    </div>
+
+    <footer>
+        © 마이스터고등학교 취업지원부 | 학생들의 성공적인 취업을 응원합니다.
+    </footer>
+</div>
+
+</body>
+</html>
