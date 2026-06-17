@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DB 하이텍 면접 복기 상세</title>
+    <title>DB 하이텍 면접 복기</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #00854a;
-            --bg-color: #f8f9fa;
+            --primary-color: #00854a;
+            --bg-color: #f4f6f8;
+            --border-color: #222;
             --card-bg: #ffffff;
         }
 
@@ -17,241 +16,388 @@
             font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
             background-color: var(--bg-color);
             margin: 0;
-            padding: 40px 20px;
+            padding: 30px 20px;
             color: #333;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         header {
-            text-align: center;
-            margin-bottom: 40px;
             position: relative;
+            margin-bottom: 30px;
         }
 
         .back-btn {
-            position: absolute;
-            left: 0;
-            top: 10px;
-            background: #fff;
-            border: 1px solid #e1e4e6;
-            padding: 8px 16px;
-            border-radius: 6px;
-            color: var(--primary-color);
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #555;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-
-        .back-btn:hover {
-            border-color: var(--primary-color);
-            background-color: #f1f5f9;
+            font-weight: bold;
+            font-size: 0.95rem;
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 2.3rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
             font-weight: 800;
         }
 
         .subtitle {
-            color: #666;
             font-size: 1.1rem;
+            color: #666;
         }
 
-        /* 🪑 면접실 배치도 */
-        .room-layout-container {
-            border: 1px solid #e1e4e6;
-            padding: 25px;
-            border-radius: 10px;
-            background: #ffffff;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-        .room-layout-container h3 { color: var(--primary-color); border-bottom: 2px solid #2c3e50; padding-bottom: 8px; margin-top: 0; }
-        
-        .layout-graphic {
-            background: #f1f5f9;
-            padding: 30px 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .interviewer-row { display: flex; justify-content: center; gap: 35px; margin-top: 10px; }
-        .interviewer-box { background: #475569; color: white; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; }
-        .interviewer-box.main { background: #1e293b; border: 2px solid var(--accent-color); padding: 10px 25px; }
-        
-        .divider-line { border-left: 2px dashed #cbd5e1; height: 40px; width: 2px; margin: 15px auto; position: relative; }
-        .divider-line span { position: absolute; left: 10px; top: 10px; font-size: 0.8rem; color: #94a3b8; white-space: nowrap; }
-        
-        .interviewee-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 15px; }
-        .interviewee-box { background: #e0f2fe; color: #0369a1; padding: 12px 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; border: 1px solid #bae6fd; width: 85px; box-sizing: border-box; }
-
-        /* 📋 통합 질문 리스트 스타일 */
-        .content-card {
-            border: 1px solid #e1e4e6;
-            padding: 30px;
-            border-radius: 10px;
+        .interview-room-section {
             background: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            margin-bottom: 30px;
-        }
-        .content-card h2 { color: var(--primary-color); border-bottom: 2px solid #2c3e50; padding-bottom: 10px; margin-top: 0; font-size: 1.5rem; }
-        .content-card h3 { margin: 25px 0 12px 0; font-size: 1.15rem; padding-left: 8px; border-left: 4px solid var(--accent-color); }
-        .content-card ul { padding-left: 20px; margin: 0; }
-        .content-card li { margin-bottom: 12px; line-height: 1.6; font-size: 1rem; }
-        
-        .sub-q { color: #dc2626; font-size: 0.9rem; padding-left: 5px; display: block; margin-top: 4px; font-weight: 500; }
-        .badge-notice { background: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 5px; }
-
-        /* 📝 시험 섹션 */
-        .exam-section {
-            border: 1px solid #e1e4e6;
-            padding: 25px;
-            border-radius: 10px;
-            background: #fafafa;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-        .exam-section h3 { color: #1e293b; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 8px; font-size: 1.3rem; }
-        .exam-flex { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px; }
-        .exam-box { flex: 1; min-width: 280px; background: #fff; padding: 18px; border-radius: 6px; border: 1px solid #e2e8f0; }
-        .exam-box h4 { margin-top: 0; margin-bottom: 10px; font-size: 1.1rem; }
-        
-        .word-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.95rem; font-weight: bold; color: #334155; margin-top: 10px; }
-
-        @media (max-width: 768px) {
-            .back-btn { position: static; display: inline-block; margin-bottom: 15px; }
+            border: 2px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 40px;
         }
 
-        footer {
+        .room-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 25px;
             text-align: center;
-            margin-top: 60px;
-            color: #888;
+            color: #333;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 35px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 15px;
+        }
+
+        .box {
+            border: 2px solid var(--border-color);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+        }
+
+        .interviewer {
+            width: 100px;
+            height: 70px;
+            background-color: #f0f7f4;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .main-table {
+            width: 90%;
+            height: 100px;
+            border: 2px dashed #666;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .interviewee {
+            width: 90px;
+            height: 70px;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-color: #b78103;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #111;
+            font-weight: 700;
+            border-left: 6px solid var(--primary-color);
+            padding-left: 14px;
+            margin: 40px 0 20px 0;
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 22px;
+        }
+
+        .question-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 14px;
+        }
+
+        .question-num {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 16px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        .sub-question-info {
+            display: block;
+            margin-top: 6px;
+            color: #c53030;
             font-size: 0.9rem;
+            font-weight: 600;
+            padding-left: 5px;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 10px;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2c3e50;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+
     <header>
-        <a href="index.html" class="back-btn">← 메인으로</a>
-        <h1>DB 하이텍 면접 기출 총정리</h1>
-        <div class="subtitle">오퍼레이터(제조/생산) 직무 실전 면접 질문 및 필기시험 복기</div>
+        <a href="index.html" class="back-btn">⬅ 메인 목록으로 가기</a>
+        <h1>DB 하이텍 면접 복기</h1>
+        <div class="subtitle">오퍼레이터(제조/생산) 직무 실전 기출 통합 복기 자료</div>
     </header>
 
-    <div class="room-layout-container">
-        <h3>🪑 실전 면접실 배치도 (면접관 3 : 면접자 5)</h3>
-        <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px; line-height: 1.5;">
-            DB하이텍은 면접관 3명과 학생 5명이 함께 들어가는 <strong>다대다(多대多) 면접 구조</strong>입니다. 대기실에서 조원들과 맞춘 인사 타이밍과 바른 경청 자세가 첫인상을 좌우합니다.
-        </p>
-
-        <div class="layout-graphic">
-            <div>
-                <span style="font-size: 0.85rem; color: #64748b; display: block; margin-bottom: 10px;">[ 💻 면접관 테이블 ]</span>
-                <div class="interviewer-row">
-                    <div class="interviewer-box">면접관 A</div>
-                    <div class="interviewer-box main">주면접관 (가운데)</div>
-                    <div class="interviewer-box">면접관 B</div>
-                </div>
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (면접관 3 : 면접자 5)</div>
+        <div class="room-layout">
+            <div class="row">
+                <div class="box interviewer">면접관</div>
+                <div class="box interviewer">면접관</div>
+                <div class="box interviewer">면접관</div>
             </div>
-
-            <div class="divider-line">
-                <span>약 3~4m 거리</span>
-            </div>
-
-            <div>
-                <div class="interviewee-row">
-                    <div class="interviewee-box">1번 의자</div>
-                    <div class="interviewee-box">2번 의자</div>
-                    <div class="interviewee-box">3번 의자</div>
-                    <div class="interviewee-box">4번 의자</div>
-                    <div class="interviewee-box">5번 의자</div>
-                </div>
-                <span style="font-size: 0.85rem; color: #64748b; display: block; margin-top: 12px;">[ 🚪 면접자 수험번호 순 입장 후 착석 ]</span>
+            <div class="main-table">면접용 테이블</div>
+            <div class="row">
+                <div class="box interviewee">면접생 (1)</div>
+                <div class="box interviewee">면접생 (2)</div>
+                <div class="box interviewee">면접생 (3)</div>
+                <div class="box interviewee">면접생 (4)</div>
+                <div class="box interviewee">면접생 (5)</div>
             </div>
         </div>
     </div>
 
-    <div class="content-card">
-        <h2>🎯 실전 기출 질문 모음</h2>
-        
-        <h3 style="color: #0369a1; border-left-color: #0369a1;">1. 회사 및 직무 이해도 (공통 필수)</h3>
-        <ul>
-            <li>DB하이텍에 대해 어떻게 알게 되었나요?</li>
-            <li>오퍼레이터 직무가 실제 공장에서 무슨 일을 하는지 명확히 알고 있습니까?</li>
-            <li>우리 학교 선배들은 대개 어느 회사나 직무 쪽으로 많이 취업해 나가나요?</li>
-        </ul>
-
-        <h3 style="color: #b45309; border-left-color: #b45309;">2. 인성 및 학교 생활 (생기부 / 개인 검증)</h3>
-        <ul>
-            <li>1학년 시절에 비해서 학업 성적이 눈에 띄게 많이 오른 자신만의 비결이 있나요?</li>
-            <li>본인의 전공 학과와 오퍼레이터 직무가 상관없어 보이는데 왜 지원했나요?</li>
-            <li>생활기록부를 보니 체중을 많이 감량했던데, 특별한 이유가 있나요? 아직도 빼고 있나요?</li>
-            <li>파이썬 언어는 어디서 배우셨나요?
-                <span class="sub-q">↳ [꼬리] 직접 프로그램을 짜본 경험이 있나요?</span>
-                <span class="sub-q">↳ [꼬리] 파이썬과 오퍼레이터 직무는 연관성이 낮아 보이는데 어떻게 생각하나요?</span>
-            </li>
-            <li>본인의 이메일 아이디를 그렇게 독창적/창의적으로 만들게 된 특별한 계기가 있나요?</li>
-            <li>취미가 축구인데, 축구를 하면서 느끼는 기분과 주로 소화하는 포지션은 어디인가요?
-                <span class="sub-q">↳ [꼬리] 상황이나 여건이 안 돼서 축구를 하지 못할 때는 스트레스를 어떻게 해소하나요?</span>
-            </li>
-            <li>기록에 있는 주짓수는 왜 도중에 그만두게 되었나요?</li>
-            <li>지금까지 살아오면서 하고 있던 일을 포기해 본 경험이 있나요? 그리고 포기했을 때 느낀 기분은 어땠나요?</li>
-            <li>평소에도 지금 면접장처럼 남들보다 먼저 나서서 주도적으로 대답을 하시는 편인가요?</li>
-        </ul>
-
-        <h3 style="color: #65a30d; border-left-color: #65a30d;">3. 공동체 역량 및 위기 대처 (인성)</h3>
-        <ul>
-            <li>단체 생활을 할 때 어떤 점이 가장 어렵게 느껴졌나요?</li>
-            <li>살면서 마음속으로 가장 큰 부담감을 느꼈던 일을 경험한 적이 있습니까?
-                <span class="sub-q">↳ [꼬리] 혹시 지금 이 면접 자리가 본인에게 많이 부담되지는 않나요?</span>
-            </li>
-            <li>학급 친구들이 나라는 사람을 평소에 어떻게 평가하는 것 같나요?</li>
-            <li>단체 생활을 하다가 정말 화가 나는 상황이 생기면 주로 어떻게 대처하나요?</li>
-            <li>누군가 나를 욕하거나 험담하는 것을 들었다면 어떻게 대응하겠습니까?
-                <span class="sub-q" style="color: #4b5563;">↳ (※ 학급 친구가 욕했을 때와 전혀 모르는 사람이 욕했을 때 2가지 상황 모두 답변 요구)</span>
-            </li>
-            <li>처음 본 사람에게도 먼저 말을 서스럼없이 잘 거는 편인가요?</li>
-            <li>인성 검사 결과를 보니 '봉사형' 인재로 나오는데, 외부 활동 중 가장 기억에 남고 재밌었던 일이 있나요?</li>
-        </ul>
-
-        <h3 style="color: #059669; border-left-color: #059669;">4. 근무 환경 적응력 (공통 단답형 / 밸런스 퀴즈)</h3>
-        <ul>
-            <li><strong>[인생관]</strong> 루틴이 있는 삶 VS 변화하는 삶</li>
-            <li><strong>[휴식 성향]</strong> 휴식할 때 주로 시간을 보내는 방식: 야외 활동 VS 집에서 휴식</li>
-            <li><strong>[근무 환경]</strong> 4조 3교대 근무를 장기적으로 소화하기 위해 가장 필요한 능력은?</li>
-            <li><strong>[공동체]</strong> 기숙사 단체 생활을 할 때 가장 조심해야 하거나 필요한 점은?</li>
-        </ul>
-
-        <h3 style="color: #475569; border-left-color: #475569;">5. 최종 포부 및 마무리</h3>
-        <ul>
-            <li>디비하이텍에 입사하여 근무하면서 개인적으로 이루고 싶은 최종 꿈(포부)은 무엇인가요?</li>
-            <li>마지막으로 짧게 하고 싶은 말 <span class="badge-notice">10초 이내 제한 조 존재</span></li>
+    <div class="tip-box">
+        <div class="tip-title">💡 실전 면접 TIP & 총평</div>
+        <ul class="tip-list">
+            <li><strong>조별 공통 출제 패턴:</strong> 기업 지원동기, 오퍼레이터 직무 이해도, 교대근무 및 기숙사 적응 요건은 조를 불문하고 완전히 동일하게 출제되는 필수 문항입니다.</li>
+            <li><strong>생활기록부 기반 압박 질문:</strong> 성적 변동 추이, 갑작스러운 체중 감량 사유, 취미/특기를 도중에 그만두거나 포기한 경험 등을 집요하게 물어 오래 다닐 수 있는 끈기를 확인합니다.</li>
+            <li><strong>현장 리딩형 영어 단어:</strong> 난이도는 높지 않으나 면접 마지막 단계 혹은 중간에 무작위 단어를 읽게 하는 구술 평가가 포함됩니다.</li>
         </ul>
     </div>
 
-    <div class="exam-section">
-        <h3>📝 필기시험 유형 및 실전 영어 구술 단어</h3>
-        <div class="exam-flex">
-            
-            <div class="exam-box">
-                <h4 style="color: var(--accent-color);">📋 문해력 지문 테스트</h4>
-                <p style="font-size: 0.95rem; color:#475569; line-height: 1.6; margin: 0;">
-                    따로 지식이 필요하기보단 지문과 보기 문항 내에 정답 힌트가 다 들어있는 형태로 출제됩니다. 시간 내에 당황하지 않고 지문을 정확히 독해하는 차분함이 핵심입니다.
-                </p>
+    <div class="section-title">4. 받은 질문 및 복기 내용</div>
+
+    <div class="qa-list">
+        
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 01</span> DB하이텍에 대해 어떻게 알게 되었나요? (기업 지원 동기)</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 02</span> 오퍼레이터 직무가 실제 공장에서 무슨 일을 하는지 정확히 알고 있습니까?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 03</span> 본교 선배들은 대개 어느 회사나 어떤 직무 쪽으로 많이 취업해 가나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 04</span> 1학년 시절에 비해서 학업 성적이 눈에 띄게 많이 상승한 특별한 비결이 있나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 05</span> 본인의 현재 전공 학과와 오퍼레이터 직무가 무관해 보이는데 지원하게 된 사유는 무엇인가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title">
+                <span class="question-num">질문 06</span> 생활기록부를 보니 체중을 많이 감량했던데 왜 살을 빼셨나요? 아직도 감량 중인가요?
             </div>
-            
-            <div class="exam-box">
-                <h4 style="color: #0369a1;">🗣️ 영어 발음 및 구술 테스트</h4>
-                <p style="font-size: 0.95rem; color:#475569; margin-bottom: 8px; margin-top: 0;">
-                    한 사람당 무작위로 3개씩 지정하여 리딩을 시킵니다. 제조 생산 현장 설비 인터페이스나 작업 지시서에 자주 등장하는 기초 필수 단어들 위주입니다.
-                </p>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title">
+                <span class="question-num">질문 07</span> 파이썬 프로그래밍 언어는 어디서 배우셨나요?
+                <span class="sub-question-info">↳ [꼬리 질문] 직접 코드를 짜서 프로그램을 만들어 본 경험이 있습니까?</span>
+                <span class="sub-question-info">↳ [꼬리 질문] 파이썬 지식과 오퍼레이터 직무는 연관성이 낮아 보이는데 이에 대해 어떻게 생각하나요?</span>
+            </div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 08</span> 본인이 사용하고 있는 이메일 아이디를 그렇게 독창적으로 창작하게 된 계기가 있나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title">
+                <span class="question-num">질문 09</span> 취미가 축구인데, 축구를 하면서 주로 느끼는 감정은 무엇이며 뛰고 있는 포지션은 어디인가요?
+                <span class="sub-question-info">↳ [꼬리 질문] 사정이 생겨 좋아하는 축구를 하지 못할 때는 스트레스를 주로 어떻게 해소하나요?</span>
+            </div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 10</span> 예전에 하던 주짓수 운동은 왜 도중에 그만두게 되었나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 11</span> 과거에 열중하던 일을 중간에 포기해 본 경험이 있나요? 포기하고 나서 느낀 기분은 어땠나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 12</span> 평소에도 지금처럼 다른 사람들보다 먼저 적극적으로 앞장서서 대답을 주도하는 편인가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 13</span> 단체 생활이나 공동체 활동을 수행할 때 어떤 부분이 가장 어렵게 느껴졌나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title">
+                <span class="question-num">질문 14</span> 살아가면서 정신적으로나 환경적으로 가장 큰 부담감을 느꼈던 사건이 있습니까?
+                <span class="sub-question-info">↳ [꼬리 질문] 혹시 지금 앉아 계시는 이 면접 자리가 본인에게 많이 부담되지는 않나요?</span>
+            </div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 15</span> 평소 학교 학급 친구들이 나라는 사람에 대해 어떻게 평가하는 것 같나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 16</span> 단체 단합 생활 중 본인이 정말 화가 나거나 분한 상황이 생기면 주로 감정을 어떻게 다스리나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title">
+                <span class="question-num">질문 17</span> 만약 누군가가 나를 뒤에서 욕하거나 험담하는 것을 직접 들었다면 어떻게 대응하겠습니까?
+                <span class="sub-question-info">↳ (※ 친한 학급 친구가 욕했을 때와, 나를 전혀 모르는 타인이 욕했을 때 2가지 상황 각각 답변 필요)</span>
+            </div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 18</span> 처음 만난 낯선 사람에게도 넉살 좋게 먼저 말을 잘 건네는 성격인가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 19</span> 인성 검사 결과 유형을 보니 '봉사형'에 가까운데, 학교 외부 봉사 활동 중 가장 기억에 남는 재밌는 경험이 있나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 20</span> <strong>[공통 밸런스 퀴즈]</strong> 본인이 지향하는 가치관은 무엇인가요? (루틴이 있는 삶 VS 변화하는 삶)</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 21</span> <strong>[공통 밸런스 퀴즈]</strong> 주말이나 휴식을 취할 때 주로 보내는 성향은 어느 쪽인가요? (야외 활동 VS 집에서 휴식)</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 22</span> <strong>[근무 조건]</strong> 방진복을 착용하고 4조 3교대 영속 교대근무를 장기 소화하기 위해 가장 필요한 핵심 능력은 무엇인가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 23</span> <strong>[기숙사 단체]</strong> 타 지역 사내 기숙사 단체 공동 생활을 조화롭게 하기 위해 가장 요구되는 점은 무엇인가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 24</span> DB하이텍에 최종 입사하여 근무하면서 개인적으로 이루고 싶은 최종 꿈(포부)은 무엇인가요?</div>
+            <pre class="answer-box">// 예: 마이스터 최고의 선임 오퍼레이터 엔지니어 성장 등</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 25</span> <strong>[실전 영어 테스트]</strong> 무작위로 제시되는 아래 기초 영어 단어 및 문장을 정확하게 읽어보세요.</div>
+            <div class="answer-box">
+                <span style="color:#00854a; font-weight:bold; display:block; margin-bottom:8px;">[인당 3개씩 무작위 지정 기출 단어장]</span>
                 <div class="word-grid">
                     <div>• Action (조치)</div>
                     <div>• Expose (노광/노출)</div>
@@ -262,16 +408,18 @@
                     <div>• Thin film (박막)</div>
                     <div>• Real (실제)</div>
                     <div>• Default (기본값)</div>
-                    <div style="color: #b45309;">• apartment (문장형/단어)</div>
+                    <div>• apartment (단어/문장형)</div>
                 </div>
             </div>
-
         </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 26</span> 마지막으로 짧게 10초 이내로 하고 싶은 말이 있다면 간결하게 해보세요.</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+        
     </div>
 
-    <footer>
-        © 마이스터고등학교 취업지원부 | 여러분들의 성공적인 취업을 응원합니다.
-    </footer>
 </div>
 
 </body>
