@@ -56,6 +56,7 @@
             color: #666;
         }
 
+        /* [수정] 원본 배치도 디자인 완벽 반영 */
         .interview-room-section {
             background: #fff;
             border: 2px solid #e1e4e6;
@@ -78,50 +79,43 @@
             max-width: 650px;
             margin: 0 auto;
             border: 2px solid #444;
-            padding: 40px 20px;
+            padding: 60px 20px 40px 20px;
             border-radius: 6px;
             background: #fafafa;
         }
 
+        /* [수정] 우측 상단 입구 위치 변경 */
         .door {
             position: absolute;
-            bottom: -2px;
-            right: 40px;
-            width: 70px;
-            height: 5px;
+            top: 40px;
+            right: -2px;
+            width: 35px;
+            height: 70px;
             background: #fff;
             border: 2px solid #444;
-            border-bottom: none;
-            text-align: center;
-            font-size: 0.75rem;
+            border-right: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
             font-weight: bold;
-            line-height: 1;
             color: #444;
-        }
-
-        .screen-box {
-            position: absolute;
-            top: 15px;
-            left: 30px;
-            border: 2px solid #666;
-            padding: 4px 10px;
-            font-size: 0.8rem;
-            background: #e1e4e6;
-            font-weight: bold;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
         }
 
         .room-layout {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 35px;
         }
 
         .row {
             display: flex;
             justify-content: center;
             width: 100%;
-            gap: 25px;
+            gap: 15px;
         }
 
         .box {
@@ -136,8 +130,9 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
+        /* [수정] 면접관 1명 배치 */
         .interviewer {
-            width: 110px;
+            width: 120px;
             height: 70px;
             background-color: #f0f7ff;
             color: var(--primary-color);
@@ -145,23 +140,20 @@
         }
 
         .main-table {
-            width: 80%;
+            width: 70%;
             height: 80px;
-            border: 2px dashed #888;
+            border: 2px solid var(--border-color);
             background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-weight: bold;
         }
 
+        /* [수정] 면접생 4명 배치 */
         .interviewee {
-            width: 100px;
+            width: 90px;
             height: 70px;
             background-color: #fffdf0;
             color: #b78103;
             border-color: #b78103;
+            font-size: 0.9rem;
         }
 
         .section-title {
@@ -249,31 +241,33 @@
     </header>
 
     <div class="interview-room-section">
-        <div class="room-title">면접장 배치도</div>
+        <div class="room-title">면접장 그림(입구, 면접관위치, 지원자 위치)</div>
         <div class="room-container">
-            <div class="screen-box">스크린</div>
+            
             <div class="room-layout">
                 <div class="row">
                     <div class="box interviewer">면접관</div>
-                    <div class="box interviewer">면접관</div>
-                    <div class="box interviewer">면접관</div>
                 </div>
-                <div class="main-table">면접용 테이블</div>
+                
+                <div class="main-table"></div>
+                
                 <div class="row">
-                    <div class="box interviewee">면접생 (1)</div>
-                    <div class="box interviewee">면접생 (2)</div>
-                    <div class="box interviewee">면접생 (3)</div>
+                    <div class="box interviewee">면접생</div>
+                    <div class="box interviewee">면접생</div>
+                    <div class="box interviewee">면접생</div>
+                    <div class="box interviewee">면접생</div>
                 </div>
             </div>
-            <div class="door">문</div>
+            
+            <div class="door">입구</div>
         </div>
     </div>
 
     <div class="tip-box">
         <div class="tip-title">💡 실전 면접 분위기 & TIP</div>
         <ul class="tip-list">
-            <li><strong>면접 분위기:</strong> 압박하는 느낌 없이 학생들이 긴장하지 않도록 <strong>생각보다 편안한 분위기</strong>에서 면접을 볼 수 있도록 배려해 주었다고 합니다.</li>
-            <li><strong>핵심 합격 TIP:</strong> 기본 전공 질문 외에 직무 이해도를 중점적으로 확인합니다. <strong>반도체의 기본 개념</strong>과 <strong>오퍼레이터가 하는 일</strong>에 대해 성실히 공부하고 가면 면접에서 확실히 좋은 점수를 받을 수 있습니다.</li>
+            <li><strong>면접 분위기:</strong> 압박하는 느낌 없이 학생들이 긴장하지 않도록 <strong>편안한 분위기</strong>에서 면접을 볼 수 있도록 배려해 주었다고 합니다.</li>
+            <li><strong>핵심 합격 TIP:</strong> 기본 전공 질문 외에 직무 이해도를 확인합니다. <strong>반도체에 대한 기본 개념</strong>과 <strong>오퍼레이터가 하는 일</strong>에 대해 공부를 좀 하고 가면 면접에서 좋은 점수를 받을 수 있습니다.</li>
         </ul>
     </div>
 
