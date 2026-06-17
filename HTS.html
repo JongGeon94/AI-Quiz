@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에이치티솔루션 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #004b93; /* 에이치티솔루션 블루 톤 */
+            --bg-color: #f4f6f8;
+            --border-color: #222;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 30px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .interview-room-section {
+            background: #fff;
+            border: 2px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
+
+        .room-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 35px;
+            text-align: center;
+            color: #333;
+        }
+
+        .room-container {
+            position: relative;
+            max-width: 650px;
+            margin: 0 auto;
+            border: 2px solid #444;
+            padding: 40px 20px;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 15px;
+        }
+
+        .box {
+            border: 2px solid #222;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .interviewer {
+            width: 110px;
+            height: 70px;
+            background-color: #f0f7ff;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .main-table {
+            width: 75%;
+            height: 60px;
+            border: 2px dashed #888;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .interviewee {
+            width: 90px;
+            height: 70px;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-color: #b78103;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #111;
+            font-weight: 700;
+            border-left: 6px solid var(--primary-color);
+            padding-left: 14px;
+            margin: 40px 0 20px 0;
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 22px;
+        }
+
+        .question-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 14px;
+        }
+
+        .question-num {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 16px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        .tip-box {
+            background-color: #f0f7ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 목록으로 가기</a>
+        <h1>에이치티솔루션 면접 복기</h1>
+        <div class="subtitle">반도체 PM엔지니어 직무 기출 질문 통합본</div>
+    </header>
+
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (거리 매우 가까움)</div>
+        <div class="room-container">
+            <div class="room-layout">
+                <div class="row">
+                    <div class="box interviewer">면접관</div>
+                    <div class="box interviewer">면접관</div>
+                </div>
+                <div class="main-table">대화형 근거리 테이블</div>
+                <div class="row">
+                    <div class="box interviewee">면접생 (1)</div>
+                    <div class="box interviewee">면접생 (2)</div>
+                    <div class="box interviewee">면접생 (3)</div>
+                    <div class="box interviewee">면접생 (4)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <div class="tip-title">💡 실전 면접 분위기 & TIP</div>
+        <ul class="tip-list">
+            <li><strong>면접 분위기:</strong> 딱딱한 압박 면접이 아니라, <strong>매우 편안한 분위기에서 서로 대화하듯 진행</strong>됩니다. 면접관과의 거리도 가깝습니다.</li>
+            <li><strong>핵심 합격 TIP:</strong> 분위기가 편안한 만큼 <strong>긴장해서 떨지 않는 것</strong>이 가장 중요합니다. 고등학생 지원자인 만큼 <strong>군대 문제(입대 계획/생각)</strong>에 대한 질문이 공통적으로 들어오며, PM 업무의 특성상 <strong>방독면, 방진복 등 보호장구 착용에 대한 거부감 유무</strong>를 확실하게 체크하므로 이에 대한 긍정적인 답변 준비가 필수적입니다.</li>
+        </ul>
+    </div>
+
+    <div class="section-title">통합 질문 목록 및 복기 내용</div>
+
+    <div class="qa-list">
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 01</span> 1분 자기소개를 해보세요.</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 02</span> 면접 준비를 하면서 많이 연습했나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 03</span> 군대는 언제, 어떻게 다녀오실 계획인가요? (군대에 대한 자신의 생각은?)</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 04</span> PM(Preventive Maintenance, 예방정비) 업무에 도움이 될 수 있는 본인의 역량은 무엇인가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 05</span> 반도체설비보전기능사 자격증은 어떻게 취득하셨나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 06</span> (기계 전공자의 경우) 전공이 기계인데 왜 반도체로 직종을 변경하려고 하나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 07</span> 방진복뿐만 아니라 다양한 무거운 보호장비를 착용하고 작업해야 하는데 괜찮으신가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 08</span> 방독면을 실제로 착용해 본 적이 있나요? 혹시 방독면 착용 근무가 가능한가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 09</span> 신체 검사 관련 질문 (키랑 몸무게를 알려주세요.)</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 10</span> 입사 후 어떤 PM 엔지니어가 될 것인지 포부나 계획이 있나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 11</span> 마지막으로 하고 싶은 말이 있나요? (회사에 바라는 점이 있다면?)</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
