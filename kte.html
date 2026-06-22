@@ -66,7 +66,7 @@
             margin-bottom: 25px;
         }
 
-        /* 🏢 배치도 레이아웃 (보내주신 4:1 구조 완벽 구현) */
+        /* 🏢 배치도 레이아웃 (보내주신 2:2 테이블 구조 완벽 반영) */
         .interview-room-section {
             background: #fff;
             border: 1px solid #e1e4e6;
@@ -88,17 +88,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 20px;
             max-width: 650px;
             margin: 0 auto;
             position: relative;
+            padding-bottom: 40px;
         }
 
         .row {
             display: flex;
             justify-content: center;
             width: 100%;
-            gap: 15px;
+            gap: 40px; /* 좌우 간격 넓힘 */
         }
 
         .box {
@@ -114,16 +115,29 @@
         }
 
         .interviewer {
-            width: 100px;
-            height: 60px;
+            width: 110px;
+            height: 55px;
             background-color: #f0f4f8;
             color: var(--primary-color);
             border-color: var(--primary-color);
         }
 
+        .main-table {
+            width: 90%;
+            height: 120px; /* 대형 중앙 테이블 구현 */
+            border: 2px solid var(--border-color);
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
         .interviewee {
-            width: 130px;
-            height: 60px;
+            width: 110px;
+            height: 55px;
             background-color: #fffdf0;
             color: #b78103;
             border-color: #b78103;
@@ -233,17 +247,19 @@
     </header>
 
     <div class="interview-room-section">
-        <div class="room-title">면접장 배치도 (면접관 4 : 면접생 1 단독 다대일 대면)</div>
+        <div class="room-title">면접장 배치도 (면접관 2 : 면접생 2 다대다 대면 테이블)</div>
         <div class="room-layout">
+            
             <div class="row">
-                <div class="box interviewer">면접관</div>
-                <div class="box interviewer">면접관</div>
                 <div class="box interviewer">면접관</div>
                 <div class="box interviewer">면접관</div>
             </div>
             
-            <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-                <div class="box interviewee">면접생 (단독 착석)</div>
+            <div class="main-table">면접용 대형 중앙 테이블</div>
+            
+            <div class="row">
+                <div class="box interviewee">면접생</div>
+                <div class="box interviewee">면접생</div>
             </div>
 
             <div class="entrance">입구</div>
