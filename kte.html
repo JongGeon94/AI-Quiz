@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(주)케이티이 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #00854a;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #222;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e6;
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.3rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* 🏢 배치도 레이아웃 (보내주신 4:1 구조 완벽 구현) */
+        .interview-room-section {
+            background: #fff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .room-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #111;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 15px;
+        }
+
+        .box {
+            border: 2px solid var(--border-color);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .interviewer {
+            width: 100px;
+            height: 60px;
+            background-color: #f0f4f8;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .interviewee {
+            width: 130px;
+            height: 60px;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-color: #b78103;
+        }
+
+        .entrance {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 70px;
+            height: 45px;
+            border: 2px solid #cbd5e1;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .section-main-title {
+            font-size: 1.4rem;
+            color: #fff;
+            background-color: var(--primary-color);
+            padding: 12px 20px;
+            font-weight: 700;
+            border-radius: 8px;
+            margin: 45px 0 25px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .question-num {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 14px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 대문으로</a>
+        <h1>(주)케이티이 (KTE) 면접 복기</h1>
+        <div class="subtitle">해양 전력기기 및 선박 전장 제어 분야 실전 기출 아카이브</div>
+    </header>
+
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (면접관 4 : 면접생 1 단독 다대일 대면)</div>
+        <div class="room-layout">
+            <div class="row">
+                <div class="box interviewer">면접관</div>
+                <div class="box interviewer">면접관</div>
+                <div class="box interviewer">면접관</div>
+                <div class="box interviewer">면접관</div>
+            </div>
+            
+            <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                <div class="box interviewee">면접생 (단독 착석)</div>
+            </div>
+
+            <div class="entrance">입구</div>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <div class="tip-title">💡 면접장 분위기 및 실전 가이드</div>
+        <ul class="tip-list">
+            <li><strong>면접 분위기:</strong> 압박 면접 유형이 아니며, 학생들이 긴장하지 않고 편안하게 답변을 이어 나갈 수 있도록 배려해 주는 따뜻하고 온화한 분위기 속에서 진행되었습니다.</li>
+            <li><strong>핵심 가이드:</strong> 인성 위주의 질문과 기업 관심도가 주를 이룹니다. 특히 선박용 배전반, 제어 시스템 등의 주력 제품군을 다루는 기업인 만큼 **기업에 대해 미리 조사한 내용**과 **본인의 전공 강점(자격증, 학교 생활)**을 솔직하고 당당하게 어필하는 것이 핵심입니다.</li>
+        </ul>
+    </div>
+
+    <div class="section-main-title">📂 실전 기출 질문 & 워크북</div>
+
+    <div class="qa-list">
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 01</span> 우리 (주)케이티이에 지원하게 된 구체적인 동기는 무엇인가요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 02</span> 우리 기업((주)케이티이)에 대해서 어느 정도 알고 있나요? 회사 제품이나 사업 분야를 설명해 보세요.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 03</span> [거주지 관련 질의] 본인의 현재 거주지는 어디이며, 출퇴근이나 근무지 배치 시 문제는 없습니까?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 04</span> 마이스터고등학교에서의 전반적인 학교 생활은 어떠했는지 말씀해 주세요.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 05</span> 본인이 가지고 있는 전공 역량이나 성격 중 가장 자신 있는 강점은 무엇인가요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 06</span> 본인의 평소 취미는 무엇인가요? (어떤 취미인지, 그리고 그것을 시작하게 된 동기는 무엇인지 등)</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 07</span> 고등학교 재학 중 취득한 전공 자격증이나 기술 역량에는 어떤 것들이 있습니까?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 08</span> 실례가 되지 않는다면 본인의 가족 관계는 어떻게 되는지 소개해 줄 수 있나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 09</span> 마지막으로 본 면접을 마치며 꼭 하고 싶은 말이나 포부가 있다면 자유롭게 이야기해 보세요.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
