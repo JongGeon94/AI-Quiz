@@ -15,7 +15,7 @@
             
             /* 🎨 기업별 아이덴티티 네온 글로우 컬러 */
             --glow-db: #0072ff;
-            --glow-amkr: #f59e0b;
+            --glow-amkr: #7c3aed; /* AI 역량검사 전용 퍼플 */
             --glow-stats: #a855f7;
             --glow-hts: #0ea5e9;
             --glow-mts: #ef4444;
@@ -24,6 +24,7 @@
             --glow-samdi: #14b8a6;
             --glow-kepco: #3b82f6;
             --glow-kte: #64748b;
+            --glow-humetro: #0284c7;
         }
 
         body {
@@ -41,10 +42,9 @@
             margin: 0 auto;
         }
 
-        /* 🚀 상단 헤더 세련된 레이아웃 정렬 */
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         header .dept-tag {
@@ -75,50 +75,38 @@
             letter-spacing: -0.5px;
         }
 
-        /* 🗂️ 현대적인 필터 캡슐 탭 디자인 */
-        .filter-container {
+        /* 🏢 핵심 수정: 대·공기업 및 일반기업 대분류 섹션 타이틀 */
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #0f172a;
+            margin: 70px 0 28px 0;
+            letter-spacing: -1px;
             display: flex;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.6);
-            padding: 6px;
-            border-radius: 50px;
-            width: fit-content;
-            margin: 0 auto 50px auto;
-            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .category-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 26px;
+            border-radius: 4px;
         }
 
-        .filter-btn {
-            background: transparent;
-            border: none;
-            padding: 10px 28px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #64748b;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* 분류별 타이틀 강조 색상 이원화 */
+        .category-title.group-major::before { background: #1d4ed8; } /* 대공기업 파란색 바 */
+        .category-title.group-general::before { background: #047857; } /* 일반기업 초록색 바 */
 
-        .filter-btn:hover {
-            color: #0f172a;
-        }
-
-        .filter-btn.active {
-            background: #ffffff;
-            color: #0f172a;
-            box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
-        }
-
-        /* 🗂️ 그리드 레이아웃 */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
             gap: 30px;
+            margin-bottom: 20px;
         }
 
-        /* ✨ 카드 디자인 전면 대개조 (Glassmorphism 적용) */
+        /* ✨ 카드 컴포넌트 (Glassmorphism 유지) */
         .card {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -136,29 +124,38 @@
             color: inherit;
         }
 
-        .card.hide {
-            display: none !important;
-        }
-
-        /* ⚡ 고급 네온 글로우 테두리 호버 효과 */
         .card:hover {
             transform: translateY(-10px);
             background: #ffffff;
             box-shadow: 0 30px 50px -15px rgba(15, 23, 42, 0.15);
         }
         
-        .card:nth-of-type(1):hover { border-color: var(--glow-db); box-shadow: 0 20px 40px -10px rgba(0, 75, 147, 0.15); }
-        .card:nth-of-type(2):hover { border-color: var(--glow-amkr); box-shadow: 0 20px 40px -10px rgba(217, 119, 6, 0.15); }
-        .card:nth-of-type(3):hover { border-color: var(--glow-stats); box-shadow: 0 20px 40px -10px rgba(109, 40, 217, 0.15); }
-        .card:nth-of-type(4):hover { border-color: var(--glow-hts); box-shadow: 0 20px 40px -10px rgba(3, 105, 161, 0.15); }
-        .card:nth-of-type(5):hover { border-color: var(--glow-mts); box-shadow: 0 20px 40px -10px rgba(185, 28, 28, 0.15); }
-        .card:nth-of-type(6):hover { border-color: var(--glow-coupang); box-shadow: 0 20px 40px -10px rgba(194, 65, 12, 0.15); }
-        .card:nth-of-type(7):hover { border-color: var(--glow-onsemi); box-shadow: 0 20px 40px -10px rgba(4, 120, 87, 0.15); }
-        .card:nth-of-type(8):hover { border-color: var(--glow-samdi); box-shadow: 0 20px 40px -10px rgba(15, 118, 110, 0.15); }
-        .card:nth-of-type(9):hover { border-color: var(--glow-kepco); box-shadow: 0 20px 40px -10px rgba(29, 78, 216, 0.15); }
-        .card:nth-of-type(10):hover { border-color: var(--glow-kte); box-shadow: 0 20px 40px -10px rgba(51, 65, 85, 0.15); }
+        /* 왼쪽 고유 시그니처 세로 바 */
+        .card.bar-db { border-left: 6px solid #004b93; }
+        .card.bar-amkr { border-left: 6px solid var(--glow-amkr); background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 245, 255, 0.9) 100%); }
+        .card.bar-stats { border-left: 6px solid #7c3aed; }
+        .card.bar-hts { border-left: 6px solid #0369a1; }
+        .card.bar-mts { border-left: 6px solid #b91c1c; }
+        .card.bar-coupang { border-left: 6px solid #c2410c; }
+        .card.bar-onsemi { border-left: 6px solid #047857; }
+        .card.bar-samdi { border-left: 6px solid #0f766e; }
+        .card.bar-kepco { border-left: 6px solid #1d4ed8; }
+        .card.bar-kte { border-left: 6px solid #334155; }
+        .card.bar-humetro { border-left: 6px solid #0284c7; }
 
-        /* 미니 탑 배지 인라인 스타일 */
+        /* 네온 글로우 포커스 인터랙션 매칭 */
+        .card.bar-db:hover { border-color: var(--glow-db); box-shadow: 0 20px 40px -10px rgba(0, 75, 147, 0.15); }
+        .card.bar-amkr:hover { border-color: var(--glow-amkr); box-shadow: 0 25px 45px -10px rgba(124, 58, 237, 0.25); }
+        .card.bar-stats:hover { border-color: var(--glow-stats); box-shadow: 0 20px 40px -10px rgba(109, 40, 217, 0.15); }
+        .card.bar-hts:hover { border-color: var(--glow-hts); box-shadow: 0 20px 40px -10px rgba(3, 105, 161, 0.15); }
+        .card.bar-mts:hover { border-color: var(--glow-mts); box-shadow: 0 20px 40px -10px rgba(185, 28, 28, 0.15); }
+        .card.bar-coupang:hover { border-color: var(--glow-coupang); box-shadow: 0 20px 40px -10px rgba(194, 65, 12, 0.15); }
+        .card.bar-onsemi:hover { border-color: var(--glow-onsemi); box-shadow: 0 20px 40px -10px rgba(4, 120, 87, 0.15); }
+        .card.bar-samdi:hover { border-color: var(--glow-samdi); box-shadow: 0 20px 40px -10px rgba(15, 118, 110, 0.15); }
+        .card.bar-kepco:hover { border-color: var(--glow-kepco); box-shadow: 0 20px 40px -10px rgba(29, 78, 216, 0.15); }
+        .card.bar-kte:hover { border-color: var(--glow-kte); box-shadow: 0 20px 40px -10px rgba(51, 65, 85, 0.15); }
+        .card.bar-humetro:hover { border-color: var(--glow-humetro); box-shadow: 0 20px 40px -10px rgba(2, 132, 199, 0.15); }
+
         .badge {
             display: inline-block;
             padding: 6px 14px;
@@ -168,9 +165,8 @@
             margin-bottom: 24px;
             letter-spacing: 0.3px;
         }
-
         .badge.interview { background: #e2fbf0; color: #0d5a3a; }
-        .badge.ai { background: #fff7ed; color: #7c2d12; }
+        .badge.ai { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; } 
         .badge.ready { background: #f1f5f9; color: #64748b; }
 
         .card-title {
@@ -184,7 +180,8 @@
             align-items: center;
         }
 
-        /* 화살표 무브먼트 인터랙션 가미 */
+        .card.bar-amkr .card-title { color: #5b21b6; }
+
         .card-title::after {
             content: '→';
             font-size: 1.4rem;
@@ -205,7 +202,6 @@
             flex-grow: 1;
         }
 
-        /* 🏷️ 세련된 미니 태그 인라인 그룹 추가 */
         .card-tags {
             display: flex;
             flex-wrap: wrap;
@@ -221,7 +217,6 @@
             border-radius: 6px;
         }
 
-        /* 🔘 액션 스타일형 미니멀 링크 버튼 */
         .btn {
             display: block;
             text-align: center;
@@ -236,11 +231,14 @@
             border: 1px solid #e2e8f0;
         }
 
-        /* 카드 호버 시 버튼 색상이 어두운 차콜로 꽉 차면서 고급스럽게 고정 */
         .card:hover .btn {
             background: #0f172a;
             color: #ffffff;
             border-color: #0f172a;
+        }
+        .card.bar-amkr:hover .btn {
+            background: var(--glow-amkr);
+            border-color: var(--glow-amkr);
         }
 
         footer {
@@ -263,114 +261,11 @@
         <div class="subtitle">합격 선배들의 생생한 기출 데이터를 바탕으로 구성된 실전 아카이브 대시보드</div>
     </header>
 
-    <!-- 🗂️ 핵심 UX: 분류 목적별 필터링 카테고리 탭 -->
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterCards('all')">전체보기</button>
-        <button class="filter-btn" onclick="filterCards('interview')">🏢 일반 면접 복기</button>
-        <button class="filter-btn" onclick="filterCards('ai')">🤖 AI 역량검사</button>
-    </div>
-
+    <!-- ================= 🏢 CATEGORY 1: 대기업 및 공기업 계열 ================= -->
+    <div class="category-title group-major">🏢 대기업 및 공기업 아카이브</div>
     <div class="grid">
-        <!-- 1. DB하이텍 카드 -->
-        <a href="db_hitek.html" class="card" data-type="interview">
-            <div>
-                <span class="badge interview">면접 복기</span>
-                <h2 class="card-title">DB 하이텍</h2>
-                <p class="card-desc">오퍼레이터(제조/생산) 직무 기출 질문 및 실전 면접장 배치도 수록</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#반도체제조</span>
-                    <span class="tag-chip">#생산오퍼레이터</span>
-                </div>
-            </div>
-            <span class="btn">복기 자료 보기</span>
-        </a>
-
-        <!-- 2. 엠코테크놀로지 코리아 카드 -->
-        <a href="AMKR.html" class="card" data-type="ai">
-            <div>
-                <span class="badge ai">AI 역량검사</span>
-                <h2 class="card-title">엠코테크놀로지 코리아</h2>
-                <p class="card-desc">AI 역량 검사 고유 기출 문제 및 실전 대응 프로세스 모음</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#AI역검기출</span>
-                    <span class="tag-chip">#게임분석</span>
-                </div>
-            </div>
-            <span class="btn">기출 문제 풀어 보기</span>
-        </a>
-
-        <!-- 3. 스태츠칩팩코리아 카드 -->
-        <a href="stats.html" class="card" data-type="interview">
-            <div>
-                <span class="badge interview">면접 복기</span>
-                <h2 class="card-title">스태츠칩팩코리아</h2>
-                <p class="card-desc">오퍼레이터(제조/생산) 직무 기출 질문 및 실전 합격 팁 정리</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#고교실습생</span>
-                    <span class="tag-chip">#인성위주</span>
-                </div>
-            </div>
-            <span class="btn">복기 자료 보기</span>
-        </a>
-        
-        <!-- 4. HT 솔루션 카드 -->
-        <a href="HTS.html" class="card" data-type="interview">
-            <div>
-                <span class="badge interview">면접 복기</span>
-                <h2 class="card-title">HT 솔루션</h2>
-                <p class="card-desc">반도체 PM엔지니어 직무 기출 질문 및 실전 전공 기술 면접 정리</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#PM엔지니어</span>
-                    <span class="tag-chip">#기술기출</span>
-                </div>
-            </div>
-            <span class="btn">복기 자료 보기</span>
-        </a>
-        
-        <!-- 5. MTS 코퍼레이션 카드 -->
-        <a href="MTS.html" class="card" data-type="interview">
-            <div>
-                <span class="badge interview">면접 복기</span>
-                <h2 class="card-title">MTS 코퍼레이션</h2>
-                <p class="card-desc">2026 일학습병행제 기출 질문 통합, 방진복 및 건강 체크 리스트</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#일학습병행</span>
-                    <span class="tag-chip">#방진복환경</span>
-                </div>
-            </div>
-            <span class="btn">복기 자료 보기</span>
-        </a>
-
-        <!-- 6. 쿠팡풀필먼트서비스 카드 -->
-        <a href="Coupang.html" class="card" data-type="interview">
-            <div>
-                <span class="badge interview">면접 복기</span>
-                <h2 class="card-title">쿠팡풀필먼트서비스</h2>
-                <p class="card-desc">물류 테크 및 운영 직무 인성 면접 기출 및 현장 체크리스트</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#물류테크</span>
-                    <span class="tag-chip">#인성면접</span>
-                </div>
-            </div>
-            <span class="btn">복기 자료 보기</span>
-        </a>
-
-        <!-- 7. 온세미컨덕터코리아 카드 -->
-        <a href="Onsemi.html" class="card" data-type="interview">
-            <div>
-                <span class="badge interview">면접 복기</span>
-                <h2 class="card-title">온세미컨덕터코리아</h2>
-                <p class="card-desc">외국계 반도체 제조 기업 맞춤형 인성 교류 및 필수 규정 정리</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#외국계반도체</span>
-                    <span class="tag-chip">#안전규정</span>
-                </div>
-            </div>
-            <span class="btn">복기 자료 보기</span>
-        </a>
-        
-        <!-- 8. 삼성디스플레이 카드 -->
-        <a href="samsung_display.html" class="card" data-type="interview">
+        <!-- 삼성디스플레이 -->
+        <a href="samsung_display.html" class="card bar-samdi">
             <div>
                 <span class="badge interview">면접 복기</span>
                 <h2 class="card-title">삼성디스플레이</h2>
@@ -382,9 +277,9 @@
             </div>
             <span class="btn">복기 자료 보기</span>
         </a>
-        
-        <!-- 9. 한국전력공사 카드 -->
-        <a href="kepco.html" class="card" data-type="interview">
+
+        <!-- 한국전력공사 -->
+        <a href="kepco.html" class="card bar-kepco">
             <div>
                 <span class="badge interview">면접 복기</span>
                 <h2 class="card-title">한국전력공사</h2>
@@ -397,22 +292,8 @@
             <span class="btn">복기 자료 보기</span>
         </a>
 
-        <!-- 10. (주)케이티이 카드 -->
-        <a href="kte.html" class="card" data-type="interview">
-            <div>
-                <span class="badge interview">면접 복기</span>
-                <h2 class="card-title">(주)케이티이 (KTE)</h2>
-                <p class="card-desc">해양 전장 및 제어시스템 전문 기업 2:2 다대다 실전 면접 기출 복기본</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#선박전장제어</span>
-                    <span class="tag-chip">#다대다대면</span>
-                </div>
-            </div>
-            <span class="btn">복기 자료 보기</span>
-        </a>
-
-        <!-- 11. 부산교통공사 카드 -->
-        <a href="humetro.html" class="card" data-type="interview">
+        <!-- 부산교통공사 -->
+        <a href="humetro.html" class="card bar-humetro">
             <div>
                 <span class="badge interview">면접 복기</span>
                 <h2 class="card-title">부산교통공사</h2>
@@ -424,8 +305,126 @@
             </div>
             <span class="btn">복기 자료 보기</span>
         </a>
+
+        <!-- DB하이텍 -->
+        <a href="db_hitek.html" class="card bar-db">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">DB 하이텍</h2>
+                <p class="card-desc">오퍼레이터(제조/생산) 직무 기출 질문 및 실전 면접장 배치도 수록</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#반도체제조</span>
+                    <span class="tag-chip">#생산오퍼레이터</span>
+                </div>
+            </div>
+            <span class="btn">복기 자료 보기</span>
+        </a>
         
-        <!-- 11. 추가 예정 카드 블록 -->
+    </div>
+
+
+    <!-- ================= 🤝 CATEGORY 2: 우수 중견 및 일반기업 계열 ================= -->
+    <div class="category-title group-general">🤝 우수 중견 및 일반기업 아카이브</div>
+    <div class="grid">
+        <!-- 쿠팡풀필먼트서비스 -->
+        <a href="Coupang.html" class="card bar-coupang">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">쿠팡풀필먼트서비스</h2>
+                <p class="card-desc">물류 테크 및 운영 직무 인성 면접 기출 및 현장 체크리스트</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#물류테크</span>
+                    <span class="tag-chip">#인성면접</span>
+                </div>
+            </div>
+            <span class="btn">복기 자료 보기</span>
+        </a>
+
+        <!-- 엠코테크놀로지 코리아 (AI 검사 특화 디자인) -->
+        <a href="AMKR.html" class="card bar-amkr">
+            <div>
+                <span class="badge ai">AI 역량검사</span>
+                <h2 class="card-title">엠코테크놀로지 코리아</h2>
+                <p class="card-desc">AI 역량 검사 고유 기출 문제 및 실전 대응 프로세스 모음</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#AI역검기출</span>
+                    <span class="tag-chip">#게임분석</span>
+                </div>
+            </div>
+            <span class="btn">기출 문제 풀어 보기</span>
+        </a>
+
+        <!-- 스태츠칩팩코리아 -->
+        <a href="stats.html" class="card bar-stats">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">스태츠칩팩코리아</h2>
+                <p class="card-desc">오퍼레이터(제조/생산) 직무 기출 질문 및 실전 합격 팁 정리</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#고교실습생</span>
+                    <span class="tag-chip">#인성위주</span>
+                </div>
+            </div>
+            <span class="btn">복기 자료 보기</span>
+        </a>
+        
+        <!-- HT 솔루션 -->
+        <a href="HTS.html" class="card bar-hts">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">HT 솔루션</h2>
+                <p class="card-desc">반도체 PM엔지니어 직무 기출 질문 및 실전 전공 기술 면접 정리</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#PM엔지니어</span>
+                    <span class="tag-chip">#기술기출</span>
+                </div>
+            </div>
+            <span class="btn">복기 자료 보기</span>
+        </a>
+        
+        <!-- MTS 코퍼레이션 -->
+        <a href="MTS.html" class="card bar-mts">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">MTS 코퍼레이션</h2>
+                <p class="card-desc">2026 일학습병행제 기출 질문 통합, 방진복 및 건강 체크 리스트</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#일학습병행</span>
+                    <span class="tag-chip">#방진복환경</span>
+                </div>
+            </div>
+            <span class="btn">복기 자료 보기</span>
+        </a>
+
+        <!-- 온세미컨덕터코리아 -->
+        <a href="Onsemi.html" class="card bar-onsemi">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">온세미컨덕터코리아</h2>
+                <p class="card-desc">외국계 반도체 제조 기업 맞춤형 인성 교류 및 필수 규정 정리</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#외국계반도체</span>
+                    <span class="tag-chip">#안전규정</span>
+                </div>
+            </div>
+            <span class="btn">복기 자료 보기</span>
+        </a>
+
+        <!-- (주)케이티이 -->
+        <a href="kte.html" class="card bar-kte">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">(주)케이티이 (KTE)</h2>
+                <p class="card-desc">해양 전장 및 선박 제어시스템 전문 기업 2:2 다대다 실전 면접 기출 복기본</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#선박전장제어</span>
+                    <span class="tag-chip">#다대다대면</span>
+                </div>
+            </div>
+            <span class="btn">복기 자료 보기</span>
+        </a>
+        
+        <!-- 업데이트 예정 카드 블록 -->
         <div class="card" style="opacity: 0.45; background: rgba(241, 245, 249, 0.4); border-style: dashed; box-shadow: none; pointer-events: none;">
             <div>
                 <span class="badge ready">업데이트 예정</span>
@@ -440,24 +439,6 @@
         © 2026 부산자동차마이스터고등학교 취업지원부 | 여러분들의 합격을 기원합니다.
     </footer>
 </div>
-
-<!-- ⚙️ 안전성 100% 초경량 필터 제어 스크립트 -->
-<script>
-    function filterCards(type) {
-        const buttons = document.querySelectorAll('.filter-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-
-        const cards = document.querySelectorAll('.grid .card');
-        cards.forEach(card => {
-            if (type === 'all' || card.getAttribute('data-type') === type) {
-                card.classList.remove('hide');
-            } else {
-                card.classList.add('hide');
-            }
-        });
-    }
-</script>
 
 </body>
 </html>
