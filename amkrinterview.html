@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엠코테크놀로지코리아 실전 면접 복기 센터</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-main: #0f172a;       
+            --text-muted: #475569;      
+            --accent-color: #0d5a3a; /* 면접 복기 테마 고유 그린 색상 */
+            --accent-glow: rgba(13, 90, 58, 0.15);
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 60px 20px;
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header .company-tag {
+            display: inline-block;
+            background: #cbd5e1;
+            color: #334155;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border-radius: 50px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin: 0 0 12px 0;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        /* 📋 섹션 공통 스타일 */
+        .section-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 850;
+            color: #1e293b;
+            margin: 0 0 20px 0;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        /* 🌐 면접 환경 테이블 스타일 */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .info-table th {
+            width: 30%;
+            text-align: left;
+            padding: 14px 10px;
+            font-weight: 700;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .info-table td {
+            width: 70%;
+            padding: 14px 10px;
+            color: #0f172a;
+            font-size: 0.98rem;
+            font-weight: 500;
+        }
+
+        .highlight-text {
+            color: #c2410c;
+            font-weight: 700;
+        }
+
+        /* ❓ 질문 리스트 디자인 */
+        .question-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .question-item {
+            position: relative;
+            padding: 18px 20px 18px 50px;
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: #1e293b;
+            transition: all 0.2s ease;
+        }
+
+        .question-item:hover {
+            border-color: #cbd5e1;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .question-item::before {
+            content: 'Q';
+            position: absolute;
+            left: 20px;
+            top: 16px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        .sub-hint {
+            display: block;
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        /* 💡 팁 박스 디자인 */
+        .tip-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-top: 15px;
+        }
+
+        .tip-box p {
+            margin: 0 0 10px 0;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: #166534;
+            font-weight: 500;
+        }
+
+        .tip-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 🔙 하단 네비게이션 버튼 */
+        .footer-nav {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(15, 23, 42, 0.15);
+        }
+
+        .btn-back:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="company-tag">🏢 Amkor Technology Korea</span>
+        <h1>엠코테크놀로지코리아 면접 복기</h1>
+        <div class="subtitle">선배가 직접 전하는 실전 온라인 면접 질문과 합격 가이드</div>
+    </header>
+
+    <!-- 섹션 1: 면접 개요 -->
+    <div class="section-box">
+        <h2 class="section-title">면접 환경 및 형식</h2>
+        <table class="info-table">
+            <tr>
+                <th>면접 방식</th>
+                <td>💻 <span class="highlight-text">온라인 화상 면접</span></td>
+            </tr>
+            <tr>
+                <th>면접관 및 지원자 구성</th>
+                <td>👥 면접관 <span class="highlight-text">2명</span> : 지원자 <span class="highlight-text">4명</span> (다대다 면접)</td>
+            </tr>
+            <tr>
+                <th>특이 사항</th>
+                <td>⚠️ 타 학교 학생들과 한 조로 편성되어 함께 면접에 참석함</td>
+            </tr>
+            <tr>
+                <th>전반적인 분위기</th>
+                <td>😊 압박 면접이 아닌, 지원자가 긴장하지 않도록 유도하는 <span class="highlight-text">편안한 분위기</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 섹션 2: 기출 질문 리스트 -->
+    <div class="section-box">
+        <h2 class="section-title">실전 기출 질문 목록</h2>
+        <ul class="question-list">
+            <li class="question-item">자기소개를 해보세요.</li>
+            
+            <li class="question-item">
+                말레이시아 어학 연수에서 무엇을 했습니까?
+                <span class="sub-hint">💡 현지에서 실제로 영어로 대화를 자주 주고받았는지 등을 중점적으로 확인합니다.</span>
+            </li>
+            
+            <li class="question-item">본가와 떨어져서 근무해야 할 수도 있는데, 타지 생활을 잘 할 수 있습니까?</li>
+            
+            <li class="question-item">
+                기숙사 우수 표창장을 받았는데 이것은 구체적으로 어떤 상입니까?
+                <span class="sub-hint">💡 [해당 학생 전용 개인 질문] 생기부 기반 서류 확인 질문입니다.</span>
+            </li>
+            
+            <li class="question-item">자동차고등학교에 재학 중인데, 자동차 분야가 아닌 반도체 기업에 지원한 특별한 이유가 있습니까?</li>
+            
+            <li class="question-item">
+                반도체 라인은 공장이 계속 돌아가는데, 4조 3교대가 어떻게 돌아가는 근무 시스템인지 알고 있습니까?
+                <span class="sub-hint">💡 교대 근무의 특성과 교대 주기 직무 이해도를 체크하는 질문입니다.</span>
+            </li>
+            
+            <li class="question-item">
+                아르바이트를 해본 경험이 있습니까?
+                <span class="sub-hint">💡 (꼬리질문) 아르바이트를 처음 시작하게 된 계기와 일하면서 마주친 진상 손님 대처 방법은 무엇이었나요?</span>
+            </li>
+            
+            <li class="question-item">
+                기숙사 생활을 하면서 본인의 친화력이 좋다는 부분을 구체적인 사례로 증명할 수 있습니까?
+                <span class="sub-hint">💡 [해당 학생 전용 개인 질문] 단체 생활 역량을 확인하는 파트입니다.</span>
+            </li>
+            
+            <li class="question-item">앰코테크놀로지코리아라는 회사를 평소에 어떻게 처음 알게 되었습니까?</li>
+            
+            <li class="question-item">본인이 전공한 '생산자동화과정'이 향후 엠코의 '제조직(오퍼레이터)' 업무와 어떤 연관성이 있다고 생각하나요?</li>
+        </ul>
+    </div>
+
+    <!-- 섹션 3: 면접 팁 -->
+    <div class="section-box">
+        <h2 class="section-title">합격 선배의 생생한 면접 TIP</h2>
+        <div class="tip-box">
+            <p>✔ <strong>아르바이트 경력이 강력한 무기가 됩니다:</strong> 아르바이트를 하면서 다양한 사람들을 상대해 본 경험이나 사회생활 경험을 자소서와 답변에 녹여내면 면접관분들에게 아주 좋은 인상을 심어줄 수 있습니다.</p>
+            <p>✔ <strong>교대 근무 및 타지 생활 각오:</strong> 4조 3교대 근무의 개념을 정확하게 이해하고 체력관리나 타지 기숙사 생활에 문제가 없다는 긍정적이고 강인한 태도가 합격 포인트입니다.</p>
+            <p>✔ <strong>긴장하지 마세요:</strong> 전체적으로 면접관분들께서 지원자들의 긴장을 풀어주기 위해 배려해 주시기 때문에, 준비한 내용을 편안하고 차분하게 웃는 얼굴로 답변하시면 충분히 좋은 결과를 얻을 수 있습니다.</p>
+        </div>
+    </div>
+
+    <!-- 하단 이동 버튼 -->
+    <div class="footer-nav">
+        <a href="index.html" class="btn-back">← 메인 대시보드로 이동</a>
+    </div>
+
+    <footer>
+        © 2026 부산자동차마이스터고등학교 취업지원부 | 여러분들의 합격을 기원합니다.
+    </footer>
+</div>
+
+</body>
+</html>
