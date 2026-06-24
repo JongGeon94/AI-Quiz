@@ -75,7 +75,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* 🏢 핵심 수정: 대·공기업 및 일반기업 대분류 섹션 타이틀 */
+        /* 대·공기업 및 일반기업 대분류 섹션 타이틀 */
         .category-title {
             font-size: 1.8rem;
             font-weight: 900;
@@ -95,9 +95,8 @@
             border-radius: 4px;
         }
 
-        /* 분류별 타이틀 강조 색상 이원화 */
-        .category-title.group-major::before { background: #1d4ed8; } /* 대공기업 파란색 바 */
-        .category-title.group-general::before { background: #047857; } /* 일반기업 초록색 바 */
+        .category-title.group-major::before { background: #1d4ed8; } 
+        .category-title.group-general::before { background: #047857; } 
 
         .grid {
             display: grid;
@@ -106,7 +105,7 @@
             margin-bottom: 20px;
         }
 
-        /* ✨ 카드 컴포넌트 (Glassmorphism 유지) */
+        /* ✨ 카드 컴포넌트 */
         .card {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -130,7 +129,7 @@
             box-shadow: 0 30px 50px -15px rgba(15, 23, 42, 0.15);
         }
         
-        /* 왼쪽 고유 시그니처 세로 바 */
+        /* 왼쪽 테두리 바 */
         .card.bar-db { border-left: 6px solid #004b93; }
         .card.bar-amkr { border-left: 6px solid var(--glow-amkr); background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 245, 255, 0.9) 100%); }
         .card.bar-stats { border-left: 6px solid #7c3aed; }
@@ -143,7 +142,7 @@
         .card.bar-kte { border-left: 6px solid #334155; }
         .card.bar-humetro { border-left: 6px solid #0284c7; }
 
-        /* 네온 글로우 포커스 인터랙션 매칭 */
+        /* 호버 테두리 색상 매칭 */
         .card.bar-db:hover { border-color: var(--glow-db); box-shadow: 0 20px 40px -10px rgba(0, 75, 147, 0.15); }
         .card.bar-amkr:hover { border-color: var(--glow-amkr); box-shadow: 0 25px 45px -10px rgba(124, 58, 237, 0.25); }
         .card.bar-stats:hover { border-color: var(--glow-stats); box-shadow: 0 20px 40px -10px rgba(109, 40, 217, 0.15); }
@@ -261,10 +260,8 @@
         <div class="subtitle">합격 선배들의 생생한 기출 데이터를 바탕으로 구성된 실전 아카이브 대시보드</div>
     </header>
 
-    <!-- ================= 🏢 CATEGORY 1: 대기업 및 공기업 계열 ================= -->
     <div class="category-title group-major">🏢 대기업 및 공기업 아카이브</div>
     <div class="grid">
-        <!-- 삼성디스플레이 -->
         <a href="samsung_display.html" class="card bar-samdi">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -278,7 +275,6 @@
             <span class="btn">복기 자료 보기</span>
         </a>
 
-        <!-- 한국전력공사 -->
         <a href="kepco.html" class="card bar-kepco">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -292,7 +288,6 @@
             <span class="btn">복기 자료 보기</span>
         </a>
 
-        <!-- 부산교통공사 -->
         <a href="humetro.html" class="card bar-humetro">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -305,28 +300,11 @@
             </div>
             <span class="btn">복기 자료 보기</span>
         </a>
-
-        <!-- DB하이텍 -->
-        <a href="db_hitek.html" class="card bar-db">
-            <div>
-                <span class="badge interview">면접 복기</span>
-                <h2 class="card-title">DB 하이텍</h2>
-                <p class="card-desc">오퍼레이터(제조/생산) 직무 기출 질문 및 실전 면접장 배치도 수록</p>
-                <div class="card-tags">
-                    <span class="tag-chip">#반도체제조</span>
-                    <span class="tag-chip">#생산오퍼레이터</span>
-                </div>
-            </div>
-            <span class="btn">복기 자료 보기</span>
-        </a>
-        
     </div>
 
 
-    <!-- ================= 🤝 CATEGORY 2: 우수 중견 및 일반기업 계열 ================= -->
     <div class="category-title group-general">🤝 우수 중견 및 일반기업 아카이브</div>
     <div class="grid">
-        <!-- 쿠팡풀필먼트서비스 -->
         <a href="Coupang.html" class="card bar-coupang">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -340,7 +318,6 @@
             <span class="btn">복기 자료 보기</span>
         </a>
 
-        <!-- 엠코테크놀로지 코리아 (AI 검사 특화 디자인) -->
         <a href="amkr_aitest.html" class="card bar-amkr">
             <div>
                 <span class="badge ai">AI 역량검사</span>
@@ -354,7 +331,6 @@
             <span class="btn">기출 문제 풀어 보기</span>
         </a>
 
-        <!-- 스태츠칩팩코리아 -->
         <a href="stats.html" class="card bar-stats">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -368,7 +344,6 @@
             <span class="btn">복기 자료 보기</span>
         </a>
         
-        <!-- HT 솔루션 -->
         <a href="HTS.html" class="card bar-hts">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -382,7 +357,6 @@
             <span class="btn">복기 자료 보기</span>
         </a>
         
-        <!-- MTS 코퍼레이션 -->
         <a href="MTS.html" class="card bar-mts">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -396,7 +370,6 @@
             <span class="btn">복기 자료 보기</span>
         </a>
 
-        <!-- 온세미컨덕터코리아 -->
         <a href="Onsemi.html" class="card bar-onsemi">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -410,7 +383,19 @@
             <span class="btn">복기 자료 보기</span>
         </a>
 
-        <!-- (주)케이티이 -->
+        <a href="db_hitek_2025.html" class="card bar-db">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">DB 하이텍</h2>
+                <p class="card-desc">오퍼레이터(제조/생산) 직무 기출 질문 및 실전 면접장 배치도 수록</p>
+                <div class="card-tags">
+                    <span class="tag-chip">#반도체제조</span>
+                    <span class="tag-chip">#생산오퍼레이터</span>
+                </div>
+            </div>
+            <span class="btn">복기 자료 보기</span>
+        </a>
+
         <a href="kte.html" class="card bar-kte">
             <div>
                 <span class="badge interview">면접 복기</span>
@@ -424,7 +409,6 @@
             <span class="btn">복기 자료 보기</span>
         </a>
         
-        <!-- 업데이트 예정 카드 블록 -->
         <div class="card" style="opacity: 0.45; background: rgba(241, 245, 249, 0.4); border-style: dashed; box-shadow: none; pointer-events: none;">
             <div>
                 <span class="badge ready">업데이트 예정</span>
