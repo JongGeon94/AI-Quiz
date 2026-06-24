@@ -113,6 +113,7 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
         }
 
         .question-title {
@@ -143,7 +144,7 @@
             white-space: pre-wrap;
         }
 
-        /* 📝 보기 선택지 스타일 */
+        /* 📝 보기 선택지 스타일 (라디오 버튼 매칭) */
         .options-list {
             list-style: none;
             padding: 0;
@@ -151,28 +152,91 @@
         }
 
         .options-list li {
-            padding: 8px 12px;
+            padding: 10px 14px;
             background: #fff;
             border: 1px solid #edf2f7;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             border-radius: 6px;
             font-size: 0.95rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
 
-        .options-list li.correct {
-            background-color: #f0fdf4;
-            border-color: #bbf7d0;
-            color: #166534;
-            font-weight: bold;
+        .options-list li:hover {
+            background-color: #f8fafc;
         }
 
-        .check-icon {
-            font-size: 0.9rem;
-            color: #16a34a;
+        .options-list input[type="radio"] {
+            margin-right: 12px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* 📊 실시간 채점 결과 스타일 */
+        .result-badge {
+            display: none;
+            font-size: 0.85rem;
             font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-left: auto;
+        }
+
+        .qa-card.correct-card { border-left: 5px solid #10b981; background-color: #f0fdf4; }
+        .qa-card.wrong-card { border-left: 5px solid #ef4444; background-color: #fef2f2; }
+
+        .qa-card.correct-card .result-badge.correct { display: inline-block; background: #10b981; color: white; }
+        .qa-card.wrong-card .result-badge.wrong { display: inline-block; background: #ef4444; color: white; }
+
+        /* 💯 총점 스코어 보드 */
+        .score-board {
+            display: none;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .score-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .score-num {
+            font-size: 2.8rem;
+            color: #38bdf8;
+            font-weight: 900;
+        }
+
+        /* 🔘 채점 제어 버튼 */
+        .action-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 114, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -186,11 +250,18 @@
         <div class="subtitle">고교 실습생 선배들이 직접 응시하고 복기한 국어 및 영어 핵심 기출 자료</div>
     </header>
 
+    <!-- 💯 성적 결과판 (제출 전엔 안 보임) -->
+    <div id="scoreBoard" class="score-board">
+        <div class="score-text">실전 테스트 결과</div>
+        <div><span class="score-num" id="scoreValue">0</span> / 100 점</div>
+        <p style="margin: 10px 0 0 0; color: #94a3b8; font-size: 0.95rem;">오답 문항은 붉은색 카드로 표시됩니다. 다시 한번 검토해 보세요!</p>
+    </div>
+
     <div class="tip-box">
         <div class="tip-title">💡 필기시험 평가 경향 및 준비 가이드</div>
         <ul class="tip-list">
-            <li><strong>국어 영역:</strong> 텍스트의 핵심 주제를 빠르게 도출하는 '중심 내용 파악', 어휘력 검증, 문장의 논리적 연결 구조를 맞추는 '배열 문제', 실용 공지문 독해 및 기초 논리학(오류 찾기) 등 직무 능력에 필요한 실용 언어 위주로 출제됩니다.</li>
-            <li><strong>영어 영역:</strong> 반도체 매뉴얼이나 영어 용어를 다루는 데 필요한 기초 역량을 평가하며, 단문 독해, 실전 기초 생활영어, 문맥에 알맞은 단어를 선택하는 어휘 문제가 고루 배정됩니다.</li>
+            <li><strong>국어 영역:</strong> 지문의 중심 내용을 도출하는 문제, 문맥적 어휘력 검증, 순서 배열, 실용 독해 등이 출제됩니다.</li>
+            <li><strong>영어 영역:</strong> 기초 단문 독해, 생활영어와 더불어 현장 장비 화면 파악을 위한 <strong>필수 영단어의 한글 발음 매칭</strong> 문제가 배정됩니다.</li>
         </ul>
     </div>
 
@@ -199,68 +270,83 @@
 
     <div class="qa-list">
         <!-- 국어 01 -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">국어 01</span> [중심 내용 파악] 다음 지문을 읽고 글의 주제로 가장 적절한 것을 고르시오.</div>
+        <div class="qa-card" id="q1_card">
+            <div class="question-title">
+                <span class="question-num">국어 01</span> [중심 내용 파악] 다음 지문을 읽고 글의 주제로 가장 적절한 것을 고르시오.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">책을 읽는 습관은 사고력을 키우고 표현력을 향상시키는 데 도움이 된다. 특히 어려서부터 책을 가까이 하는 것은 미래의 학습 능력에 긍정적인 영향을 준다.</div>
             <ul class="options-list">
-                <li>A. 책의 종류</li>
-                <li class="correct">B. 독서의 효과 <span class="check-icon">정답 ✅</span></li>
-                <li>C. 사고력의 중요성</li>
-                <li>D. 학습 능력 향상 방법</li>
+                <li><label><input type="radio" name="q1" value="A"> A. 책의 종류</label></li>
+                <li><label><input type="radio" name="q1" value="B"> B. 독서의 효과</label></li>
+                <li><label><input type="radio" name="q1" value="C"> C. 사고력의 중요성</label></li>
+                <li><label><input type="radio" name="q1" value="D"> D. 학습 능력 향상 방법</label></li>
             </ul>
         </div>
 
         <!-- 국어 02 -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">국어 02</span> [문맥상 낱말 의미] 다음 문장에서 밑줄 친 ‘고심하다’의 뜻으로 가장 올바른 것을 고르시오.</div>
+        <div class="qa-card" id="q2_card">
+            <div class="question-title">
+                <span class="question-num">국어 02</span> [문맥상 낱말 의미] 다음 문장에서 밑줄 친 ‘고심하다’의 뜻으로 가장 올바른 것을 고르시오.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">그는 진로를 선택하기 위해 며칠 동안 <u>고심했다</u>.</div>
             <ul class="options-list">
-                <li>A. 기뻐하다</li>
-                <li class="correct">B. 심하게 걱정하다 <span class="check-icon">정답 ✅</span></li>
-                <li>C. 크게 놀라다</li>
-                <li>D. 일찍 결심하다</li>
+                <li><label><input type="radio" name="q2" value="A"> A. 기뻐하다</label></li>
+                <li><label><input type="radio" name="q2" value="B"> B. 심하게 걱정하다</label></li>
+                <li><label><input type="radio" name="q2" value="C"> C. 크게 놀라다</label></li>
+                <li><label><input type="radio" name="q2" value="D"> D. 일찍 결심하다</label></li>
             </ul>
         </div>
 
         <!-- 국어 03 -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">국어 03</span> [문장 순서 배열] 다음 4개의 문장을 논리적 흐름에 맞게 순서대로 바르게 배열한 보기를 고르시오.</div>
+        <div class="qa-card" id="q3_card">
+            <div class="question-title">
+                <span class="question-num">국어 03</span> [문장 순서 배열] 다음 4개의 문장을 논리적 흐름에 맞게 순서대로 바르게 배열한 보기를 고르시오.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">1. 그래서 운동을 시작했다.
 2. 나는 건강이 좋지 않았다.
 3. 운동 후 몸이 좋아졌다.
 4. 의사도 운동을 권했다.</div>
             <ul class="options-list">
-                <li>A. 1 → 4 → 2 → 3</li>
-                <li>B. 2 → 1 → 4 → 3</li>
-                <li class="correct">C. 2 → 4 → 1 → 3 <span class="check-icon">정답 ✅</span></li>
-                <li>D. 4 → 2 → 1 → 3</li>
+                <li><label><input type="radio" name="q3" value="A"> A. 1 → 4 → 2 → 3</label></li>
+                <li><label><input type="radio" name="q3" value="B"> B. 2 → 1 → 4 → 3</label></li>
+                <li><label><input type="radio" name="q3" value="C"> C. 2 → 4 → 1 → 3</label></li>
+                <li><label><input type="radio" name="q3" value="D"> D. 4 → 2 → 1 → 3</label></li>
             </ul>
         </div>
 
         <!-- 국어 04 -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">국어 04</span> [실용문 독해] 다음 안내문을 읽고 내용에 대한 설명으로 옳은 것을 고르시오.</div>
+        <div class="qa-card" id="q4_card">
+            <div class="question-title">
+                <span class="question-num">국어 04</span> [실용문 독해] 다음 안내문을 읽고 내용에 대한 설명으로 옳은 것을 고르시오.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">📅 회의 일정 안내
 일시: 7월 25일(목) 10:00
 장소: 3층 회의실
 내용: 하반기 안전교육 계획</div>
             <ul class="options-list">
-                <li>A. 회의는 오후 3시에 열린다.</li>
-                <li>B. 회의 장소는 2층이다.</li>
-                <li class="correct">C. 회의 내용은 안전교육 계획이다. <span class="check-icon">정답 ✅</span></li>
-                <li>D. 회의는 8월에 열린다.</li>
+                <li><label><input type="radio" name="q4" value="A"> A. 회의는 오후 3시에 열린다.</label></li>
+                <li><label><input type="radio" name="q4" value="B"> B. 회의 장소는 2층이다.</label></li>
+                <li><label><input type="radio" name="q4" value="C"> C. 회의 내용은 안전교육 계획이다.</label></li>
+                <li><label><input type="radio" name="q4" value="D"> D. 회의는 8월에 열린다.</label></li>
             </ul>
         </div>
 
         <!-- 국어 05 -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">국어 05</span> [논리적 오류 찾기] 다음 제시된 문장에 내포된 논리적 오류의 종류를 고르시오.</div>
+        <div class="qa-card" id="q5_card">
+            <div class="question-title">
+                <span class="question-num">국어 05</span> [논리적 오류 찾기] 다음 제시된 문장에 내포된 논리적 오류의 종류를 고르시오.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">“요즘 젊은 사람들은 모두 책을 읽지 않는다.”</div>
             <ul class="options-list">
-                <li>A. 두루뭉실한 표현</li>
-                <li>B. 어휘 선택의 문제</li>
-                <li class="correct">C. 과도한 일반화 <span class="check-icon">정답 ✅</span></li>
-                <li>D. 문법적 오류</li>
+                <li><label><input type="radio" name="q5" value="A"> A. 두루뭉실한 표현</label></li>
+                <li><label><input type="radio" name="q5" value="B"> B. 어휘 선택의 문제</label></li>
+                <li><label><input type="radio" name="q5" value="C"> C. 과도한 일반화</label></li>
+                <li><label><input type="radio" name="q5" value="D"> D. 문법적 오류</label></li>
             </ul>
         </div>
     </div>
@@ -270,63 +356,129 @@
 
     <div class="qa-list">
         <!-- 영어 01 -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">영어 01</span> [지문 독해] Read the statement below and choose the best answer to the question.</div>
+        <div class="qa-card" id="q6_card">
+            <div class="question-title">
+                <span class="question-num">영어 01</span> [지문 독해] Read the statement below and choose the best answer to the question.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">Jenny studies English every day because she wants to travel to America.
 
 Q: Why does Jenny study English?</div>
             <ul class="options-list">
-                <li>A. She wants to work in China.</li>
-                <li>B. She likes math.</li>
-                <li class="correct">C. She wants to travel to America. <span class="check-icon">정답 ✅</span></li>
-                <li>D. She teaches English.</li>
+                <li><label><input type="radio" name="q6" value="A"> A. She wants to work in China.</label></li>
+                <li><label><input type="radio" name="q6" value="B"> B. She likes math.</label></li>
+                <li><label><input type="radio" name="q6" value="C"> C. She wants to travel to America.</label></li>
+                <li><label><input type="radio" name="q6" value="D"> D. She teaches English.</label></li>
             </ul>
         </div>
 
         <!-- 영어 02 -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">영어 02</span> [생활영어] Choose the most appropriate expression for the blank.</div>
+        <div class="qa-card" id="q7_card">
+            <div class="question-title">
+                <span class="question-num">영어 02</span> [생활영어] Choose the most appropriate expression for the blank.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">A: What time is it?
 B: _______</div>
             <ul class="options-list">
-                <li class="correct">A. It’s 3 o’clock. <span class="check-icon">정답 ✅</span></li>
-                <li>B. I’m fine, thanks.</li>
-                <li>C. I’m 20 years old.</li>
-                <li>D. I live in Korea.</li>
+                <li><label><input type="radio" name="q7" value="A"> A. It’s 3 o’clock.</label></li>
+                <li><label><input type="radio" name="q7" value="B"> B. I’m fine, thanks.</label></li>
+                <li><label><input type="radio" name="q7" value="C"> C. I’m 20 years old.</label></li>
+                <li><label><input type="radio" name="q7" value="D"> D. I live in Korea.</label></li>
             </ul>
         </div>
 
         <!-- 영어 03 -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">영어 03</span> [어휘 문제] Choose the word that best defines the underlined word.</div>
+        <div class="qa-card" id="q8_card">
+            <div class="question-title">
+                <span class="question-num">영어 03</span> [어휘 문제] Choose the word that best defines the underlined word.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">He was very hungry because he <u>skipped</u> lunch.
 
 Q: What does “skipped” most likely mean?</div>
             <ul class="options-list">
-                <li>A. Ate quickly</li>
-                <li>B. Forgot</li>
-                <li class="correct">C. Missed <span class="check-icon">정답 ✅</span></li>
-                <li>D. Cooked</li>
+                <li><label><input type="radio" name="q8" value="A"> A. Ate quickly</label></li>
+                <li><label><input type="radio" name="q8" value="B"> B. Forgot</label></li>
+                <li><label><input type="radio" name="q8" value="C"> C. Missed</label></li>
+                <li><label><input type="radio" name="q8" value="D"> D. Cooked</label></li>
             </ul>
         </div>
 
-        <!-- 영어 04 (★ 뜻 매칭에서 현장 한글 발음 선택형 문항으로 교정 완료) -->
-        <div class="qa-card">
-            <div class="question-title"><span class="question-num">영어 04</span> [현장 필수 어휘] 다음 제시된 반도체 설비 및 운영 필수 영단어들의 올바른 한글 발음 조합을 고르시오.</div>
+        <!-- 영어 04 -->
+        <div class="qa-card" id="q9_card">
+            <div class="question-title">
+                <span class="question-num">영어 04</span> [현장 필수 어휘] 다음 제시된 반도체 설비 및 운영 필수 영단어들의 올바른 한글 발음 조합을 고르시오.
+                <span class="result-badge correct">정답 ○</span><span class="result-badge wrong">오답 X</span>
+            </div>
             <div class="passage-box">1. event
 2. front
 3. product
 4. Buffer</div>
             <ul class="options-list">
-                <li>A. 에이전트 - 플랜트 - 프로덕트 - 부스터</li>
-                <li>B. 이벤트 - 프로프 - 프로바이더 - 버퍼</li>
-                <li class="correct">C. 이벤트 - 프론트 - 프로덕트 - 버퍼 <span class="check-icon">정답 ✅</span></li>
-                <li>D. 이펙트 - 프론트 - 프로젝트 - 배플</li>
+                <li><label><input type="radio" name="q9" value="A"> A. 에이전트 - 플랜트 - 프로덕트 - 부스터</label></li>
+                <li><label><input type="radio" name="q9" value="B"> B. 이벤트 - 프로프 - 프로바이더 - 버퍼</label></li>
+                <li><label><input type="radio" name="q9" value="C"> C. 이벤트 - 프론트 - 프로덕트 - 버퍼</label></li>
+                <li><label><input type="radio" name="q9" value="D"> D. 이펙트 - 프론트 - 프로젝트 - 배플</label></li>
             </ul>
         </div>
     </div>
 
+    <!-- 🔘 제출 버튼 단자 -->
+    <div class="action-container">
+        <button onclick="gradeExam()" class="submit-btn">📝 정답 제출 및 채점하기</button>
+    </div>
+
 </div>
+
+<!-- 🧠 실시간 자동 채점 및 카드 인터랙션 스크립트 -->
+<script>
+    function gradeExam() {
+        // 정답 정의 키 세팅 (총 9개 문항 균등 배점화 연산 배정)
+        const answers = {
+            q1: "B", q2: "B", q3: "C", q4: "C", q5: "C",
+            q6: "C", q7: "A", q8: "C", q9: "C"
+        };
+        
+        let correctCount = 0;
+        const totalQuestions = Object.keys(answers).length;
+
+        // 문항별 루프 연산 순회 채점
+        for (let i = 1; i <= totalQuestions; i++) {
+            const questionName = 'q' + i;
+            const cardId = 'q' + i + '_card';
+            const cardElement = document.getElementById(cardId);
+            
+            // 학생이 고른 라디오 값 추출
+            const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+            
+            // 기존 채점 클래스 초기화
+            cardElement.classList.remove('correct-card', 'wrong-card');
+
+            if (selectedOption && selectedOption.value === answers[questionName]) {
+                // 정답인 경우 처리
+                cardElement.classList.add('correct-card');
+                correctCount++;
+            } else {
+                // 오답 또는 미선택인 경우 처리
+                cardElement.classList.add('wrong-card');
+            }
+        }
+
+        // 백분율 점수 환산 연산 시각화
+        const finalScore = Math.round((correctCount / totalQuestions) * 100);
+        
+        // 스코어 보드 연출 활성화
+        const scoreBoard = document.getElementById('scoreBoard');
+        const scoreValue = document.getElementById('scoreValue');
+        
+        scoreValue.innerText = finalScore;
+        scoreBoard.style.display = 'block';
+
+        // 페이지 최상단 성적 판넬 위치로 자동 스크롤 이동
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 
 </body>
 </html>
