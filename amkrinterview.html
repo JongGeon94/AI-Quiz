@@ -5,341 +5,332 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>엠코테크놀로지코리아 면접 복기</title>
     <style>
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #7c3aed; /* 엠코 고유의 퍼플 색상 반영 */
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #222;
+        }
 
         body {
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            background-attachment: fixed;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
             margin: 0;
             padding: 40px 20px;
-            color: #0f172a;
-            -webkit-font-smoothing: antialiased;
+            color: #333;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-        }
-
-        /* 🏛️ 기존 상단 그라데이션 헤더 서식 */
-        .header-box {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: white;
+            background: var(--card-bg);
             padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.3);
-            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e6;
+        }
+
+        header {
             position: relative;
-            overflow: hidden;
+            margin-bottom: 40px;
+            text-align: center;
         }
 
-        .header-box::after {
-            content: '';
+        .back-btn {
             position: absolute;
-            right: -50px;
-            bottom: -50px;
-            width: 200px;
-            height: 200px;
-            background: rgba(124, 58, 237, 0.1); /* 엠코 고유 퍼플 은은한 조명 효과 */
-            border-radius: 50%;
-            filter: blur(40px);
+            left: 0;
+            top: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
-        .tag {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(4px);
+        .back-btn:hover {
+            color: var(--accent-color);
         }
 
         h1 {
-            font-size: 2.4rem;
-            margin: 0 0 12px 0;
-            font-weight: 900;
-            letter-spacing: -1.5px;
+            color: var(--primary-color);
+            font-size: 2.3rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
         }
 
         .subtitle {
-            color: #94a3b8;
             font-size: 1.1rem;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        /* 📄 화이트 카드 섹션 서식 */
-        .content-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+            color: #666;
             margin-bottom: 25px;
         }
 
-        h2 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-top: 0;
+        /* 🏢 배치도 레이아웃 (온라인 화상 면접 구조 반영) */
+        .interview-room-section {
+            background: #fff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .room-title {
+            font-size: 1.2rem;
+            font-weight: bold;
             margin-bottom: 25px;
-            color: #0f172a;
-            letter-spacing: -0.5px;
+            text-align: center;
+            color: #111;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 20px; /* 화상 화면 배열 간격 */
+        }
+
+        .box {
+            border: 2px solid var(--border-color);
+            background: #fff;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            text-align: center;
         }
 
-        /* 📊 환경 요약 테이블 리스트 */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+        .interviewer {
+            width: 110px;
+            height: 55px;
+            background-color: #f0f4f8;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
-        .info-item {
-            background: #f8fafc;
-            border: 1px solid #edf2f7;
-            padding: 20px;
-            border-radius: 16px;
-        }
-
-        .info-label {
-            font-size: 0.85rem;
-            font-weight: 700;
+        .main-table {
+            width: 90%;
+            height: 60px; 
+            border: 2px dashed #cbd5e1;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #64748b;
-            margin-bottom: 6px;
+            font-weight: bold;
+            border-radius: 6px;
+            font-size: 0.9rem;
         }
 
-        .info-value {
-            font-size: 1.05rem;
+        .interviewee {
+            width: 110px;
+            height: 55px;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-color: #b78103;
+        }
+        
+        .interviewee.other-school {
+            background-color: #f6f6f6;
+            color: #64748b;
+            border-color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        .section-main-title {
+            font-size: 1.4rem;
+            color: #fff;
+            background-color: var(--primary-color);
+            padding: 12px 20px;
             font-weight: 700;
-            color: #1e293b;
+            border-radius: 8px;
+            margin: 45px 0 25px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
 
-        /* ❓ 실전 기출 면접 질문 질답 레이아웃 */
         .qa-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
 
-        .qa-item {
-            border-bottom: 1px solid #edf2f7;
-            padding-bottom: 20px;
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
-        .qa-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .question {
+        .question-title {
             font-size: 1.1rem;
-            font-weight: 800;
-            color: #1e293b;
-            margin-bottom: 8px;
-            display: flex;
-            gap: 10px;
-            line-height: 1.4;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
         }
 
-        .question .q-badge {
-            color: #7c3aed; /* 엠코 퍼플 포인트 */
-            font-weight: 900;
+        .question-num {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
         }
-
-        .answer-hint {
-            font-size: 0.95rem;
-            color: #475569;
-            line-height: 1.6;
-            padding-left: 24px;
-            font-weight: 500;
-        }
-
-        .target-only {
-            display: inline-block;
+        
+        .target-tag {
             background: #fff5f5;
             color: #e53e3e;
             font-size: 0.78rem;
             font-weight: 700;
-            padding: 2px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
             border: 1px solid #fed7d7;
-            margin-left: 6px;
-            vertical-align: middle;
+            margin-left: 8px;
         }
 
-        /* 💡 생생 팁 리스트 가독성 */
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 14px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #00854a;
+            margin-bottom: 12px;
+        }
+
         .tip-list {
             margin: 0;
             padding-left: 20px;
         }
 
         .tip-list li {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #334155;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .tip-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        /* 🔙 하단 이동 버튼 */
-        .btn-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .btn-home {
-            display: inline-block;
-            background: #0f172a;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            border: 1px solid #0f172a;
-        }
-
-        .btn-home:hover {
-            background: #ffffff;
-            color: #0f172a;
-            box-shadow: 0 10px 20px -10px rgba(15, 23, 42, 0.2);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            font-weight: 500;
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 🏛️ 메인 대시보드와 완벽 동일한 그라데이션 헤더 형태 -->
-    <div class="header-box">
-        <span class="tag">제조직·오퍼레이터 공채</span>
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 대문으로</a>
         <h1>엠코테크놀로지코리아 면접 복기</h1>
-        <p class="subtitle">2026학년도 고교 실습생 부천/인천 사업장 실전 화상 면접 분석 기록</p>
-    </div>
+        <div class="subtitle">반도체 후공정 패키징 및 제조 직무 분야 실전 기출 아카이브</div>
+    </header>
 
-    <!-- 섹션 1: 면접 개요 -->
-    <div class="content-card">
-        <h2>📊 면접 환경 및 형태</h2>
-        <div class="info-grid">
-            <div class="info-item">
-                <div class="info-label">면접 방식</div>
-                <div class="info-value" style="color: #2563eb;">온라인 화상 면접</div>
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (지원자 4 : 면접관 2 온라인 다대다 화상 레이아웃)</div>
+        <div class="room-layout">
+            
+            <div class="row">
+                <div class="box interviewer">면접관 1</div>
+                <div class="box interviewer">면접관 2</div>
             </div>
-            <div class="info-item">
-                <div class="info-label">면접관 : 지원자 구성</div>
-                <div class="info-value">면접관 2명 : 지원자 4명</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">조 편성 특이사항</div>
-                <div class="info-value" style="color: #c2410c;">타학교 학생 동석</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">면접장 분위기</div>
-                <div class="info-value" style="color: #16a34a;">매우 편안한 분위기</div>
+            
+            <div class="main-table">화상 면접 프로그램 연결 인터페이스 (Zoom / Teams)</div>
+            
+            <div class="row">
+                <div class="box interviewee">본교 학생</div>
+                <div class="box interviewee other-school">타학교 학생 1</div>
+                <div class="box interviewee other-school">타학교 학생 2</div>
+                <div class="box interviewee other-school">타학교 학생 3</div>
             </div>
         </div>
     </div>
 
-    <!-- 섹션 2: 실전 기출 질문 리스트 -->
-    <div class="content-card">
-        <h2>❓ 실전 기출 질문 목록</h2>
-        <div class="qa-list">
-            <div class="qa-item">
-                <div class="question"><span class="q-badge">Q.</span> 자기소개를 해보세요.</div>
-                <div class="answer-hint">→ 1분 내외로 컴팩트하게 준비한 인성 및 강점 중심의 컴팩트한 자기소개 진행.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question"><span class="q-badge">Q.</span> 말레이시아 어학 연수 과정 동안 무엇을 주로 했습니까?</div>
-                <div class="answer-hint">→ 실제 현지인 및 동료들과 영어로 실전 대화를 능동적으로 주고받았는지 언어 소통 위주로 탐색함.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question"><span class="q-badge">Q.</span> 연고지가 아닌 타지 기숙사 생활을 하게 될 텐데 외로움 없이 잘 적응할 수 있습니까?</div>
-                <div class="answer-hint">→ 독립심과 단체 기숙사 규정 준수, 그리고 멘탈 관리 역량을 종합적으로 검증하는 질문.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question">
-                    <span class="q-badge">Q.</span> 학교생활 중 받은 기숙사 우수 표창장은 정확히 무엇으로 공로를 인정받아 수상한 상인가요?
-                    <span class="target-only">해당 학생 질문</span>
-                </div>
-                <div class="answer-hint">→ 생기부 서류 기반 확인 질문으로, 모범적인 단체 생활 성향과 성실함을 증명해야 함.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question"><span class="q-badge">Q.</span> 자동차고등학교에 재학 중인데, 전공 전형 분야가 아닌 반도체 후공정 기업에 지원하게 된 명확한 계기가 있습니까?</div>
-                <div class="answer-hint">→ 지원 동기의 진정성을 체크하는 항목으로, 반도체 제조 자동화 설비에 대한 관심도를 풀어내야 함.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question"><span class="q-badge">Q.</span> 반도체 생산라인 특성상 돌아가는 4조 3교대 근무 시스템이 정확히 어떻게 운영되는 구조인지 알고 있나요?</div>
-                <div class="answer-hint">→ 직무 이해도와 연속 교대 근무에 대한 신체적·심리적 준비 수준을 명확히 판단하려는 고정 질문.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question"><span class="q-badge">Q.</span> 학창 시절에 아르바이트를 직접 경험해 본 적이 있습니까?</div>
-                <div class="answer-hint">→ (꼬리질문 연계) 해당 아르바이트를 처음 시작하게 된 계기와 일하며 만난 까다로운 진상 손님을 현명하게 대처했던 본인만의 노하우를 상세히 요구함.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question">
-                    <span class="q-badge">Q.</span> 기숙사 단체 생활 속에서 본인의 친화력이 우수하다는 점을 구체적인 에피소드로 증명할 수 있나요?
-                    <span class="target-only">해당 학생 질문</span>
-                </div>
-                <div class="answer-hint">→ 제조직 내 협업과 동료 간 소통을 원만히 수행할 수 있는 사회성 유무 확인 질문.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question"><span class="q-badge">Q.</span> 글로벌 반도체 패키징 기업인 앰코테크놀로지코리아라는 회사를 평소 어떤 경로로 알게 되었습니까?</div>
-                <div class="answer-hint">→ 기업 인지도와 사전 조사를 얼마나 성실하게 수행하고 지원했는지 열정을 판단함.</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question"><span class="q-badge">Q.</span> 고교에서 이수한 '생산자동화과정' 학업 내용과 우리가 모집하는 '제조직' 직무 사이에 구체적으로 어떤 밀접한 연관성이 존재한다고 생각합니까?</div>
-                <div class="answer-hint">→ 전공 매칭 기술 질문으로, 자동화 장비 및 라인 오퍼레이팅 과정에서 전공 지식이 발휘될 수 있음을 논리적으로 연결해야 함.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 섹션 3: 면접 팁 -->
-    <div class="content-card">
-        <h2>💡 합격자가 전하는 실전 면접 TIP 및 총평</h2>
+    <div class="tip-box">
+        <div class="tip-title">💡 면접장 분위기 및 실전 가이드</div>
         <ul class="tip-list">
-            <li><strong>아르바이트 경력의 강력함:</strong> 면접을 마친 후 복기해 보았을 때, 사회생활을 엿볼 수 있는 짧은 아르바이트 경험이라도 명확히 어필하는 것이 면접관분들에게 조직 적응력 면에서 대단히 유리하게 작용할 것 같다는 확신이 들었다고 합니다.</li>
-            <li><strong>긴장을 풀어주는 완벽한 배려:</strong> 면접관분들께서 고교생 지원자들을 위해 시종일관 미소와 경청으로 매우 편안하고 딱딱하지 않은 분위기를 유도해 주시므로, 주눅 들지 않고 당당히 의사를 표현하면 좋은 평가를 유도할 수 있습니다.</li>
+            <li><strong>면접 분위기:</strong> 압박 면접 유형이 전혀 아니며, 학생들이 긴장하지 않고 본인의 이야기를 편안하게 풀어갈 수 있도록 다정하게 배려해 주는 온화한 분위기 속에서 진행되었습니다.</li>
+            <li><strong>핵심 가이드:</strong> 타 학교 학생들과 다대다 화상 면접으로 동석하기 때문에 정돈된 목소리로 답변하는 것이 중요합니다. 선배들의 피드백에 따르면 <strong>짧은 아르바이트 경력이라도 조직 적응력과 대처 능력을 어필할 수 있는 요소</strong>가 있으면 면접에서 매우 유리하게 작용합니다.</li>
         </ul>
     </div>
 
-    <!-- 하단 복귀 버튼 -->
-    <div class="btn-container">
-        <a href="index.html" class="btn-home">← 메인 아카이브 대시보드로 이동</a>
+    <div class="section-main-title">📂 실전 기출 질문 & 워크북</div>
+
+    <div class="qa-list">
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 01</span> 준비해 온 자기소개를 자유롭게 해보세요.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 02</span> 말레이시아 어학 연수 과정 동안 무엇을 하셨나요? (실제 현지에서 영어로 주로 대화를 주고받았는지 등)</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 03</span> 본가와 떨어져서 근무해야 할 수도 있는데, 연고가 없는 타지 생활을 잘 소화할 수 있습니까?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 04</span> 학교생활 중 기숙사 우수 표창장을 받았는데, 이것은 구체적으로 어떤 상인가요?<span class="target-tag">해당 학생 질문</span></div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 05</span> 자동차고등학교에 재학 중인데, 전공 분야가 아닌 반도체 기업에 지원하게 된 특별한 동기가 있습니까?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 06</span> 반도체 라인 특성상 교대 근무가 필수적인데, 4조 3교대가 정확히 어떻게 돌아가는 근무 시스템인지 이해하고 있나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 07</span> 학창 시절에 아르바이트를 해본 경험이 있습니까? (시작하게 된 계기와 근무 중 진상 손님을 마주했을 때의 대처 노하우 등)</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 08</span> 단체 생활 속에서 본인의 친화력이 우수하다는 부분을 구체적인 사례를 들어 증명할 수 있습니까?<span class="target-tag">해당 학생 질문</span></div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 09</span> 글로벌 반도체 후공정 기업인 우리 앰코테크놀로지코리아를 평소 어떤 경로로 알게 되었나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 10</span> 고교 재학 중 이수한 생산자동화과정과 우리가 모집하는 제조직 직무 사이에 어떤 연관성이 있다고 생각하나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
     </div>
 
-    <footer>
-        © 2026 부산자동차마이스터고등학교 취업지원부 | 여러분들의 합격을 기원합니다.
-    </footer>
 </div>
 
 </body>
