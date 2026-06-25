@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국철도공사 2025학년도 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #003399; /* 코레일 시그니처 딥블루 */
+            --accent-color: #003399;  /* 2025 메인 테마 블루 반영 */
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #222;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e6;
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.3rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* 🏢 배치도 레이아웃 (지원자 1 : 면접관 4 독대 대면 구조) */
+        .interview-room-section {
+            background: #fff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .room-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #111;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .box {
+            border: 2px solid var(--border-color);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .interviewer {
+            width: 110px;
+            height: 55px;
+            background-color: #f0f4f8;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .main-table {
+            width: 95%;
+            height: 100px;
+            border: 2px solid var(--border-color);
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        .interviewee {
+            width: 120px;
+            height: 55px;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-color: #b78103;
+        }
+
+        .section-main-title {
+            font-size: 1.4rem;
+            color: #fff;
+            background-color: var(--primary-color);
+            padding: 12px 20px;
+            font-weight: 700;
+            border-radius: 8px;
+            margin: 45px 0 25px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .question-num {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .question-num.situation {
+            background: #c2410c; /* 상황과제 영역 차별화 컬러 */
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 14px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* 📋 개요 요약 테이블 스타일 */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .info-table th {
+            width: 25%;
+            text-align: left;
+            padding: 12px 10px;
+            font-weight: 700;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .info-table td {
+            width: 75%;
+            padding: 12px 10px;
+            color: #0f172a;
+            font-size: 0.95rem;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #00854a;
+            margin-bottom: 12px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="korail_hub.html" class="back-btn">⬅ 코레일 아카이브로</a>
+        <h1>한국철도공사 2025년도 면접 복기</h1>
+        <div class="subtitle">차량정비 직무 고졸 공채 실전 기출 아카이브 워크북</div>
+    </header>
+
+    <!-- 면접 개요 요약 정보 테이블 -->
+    <div class="interview-room-section" style="padding: 20px 25px; margin-bottom: 25px;">
+        <table class="info-table">
+            <tr>
+                <th>지원 기업 / 직종</th>
+                <td>한국철도공사 (코레일) / <strong>차량정비</strong></td>
+            </tr>
+            <tr>
+                <th>면접 일자</th>
+                <td>2025. 10. 21. (화)</td>
+            </tr>
+            <tr>
+                <th>면접 장소</th>
+                <td>한국철도공사 인재개발원 (경기 오산)</td>
+            </tr>
+            <tr>
+                <th>지방 이동 경로 참고</th>
+                <td>🚄 KTX 탑승 → 수원역 하차 → 수원역에서 택시 이용하여 인재개발원 이동</td>
+            </tr>
+            <tr>
+                <th>면접 형식 및 시간</th>
+                <td><strong>지원자 1명 : 면접관 4명</strong> (다대일 대면 면접) / 총 20분 내외 진행</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 분위기 및 팁 영역 -->
+    <div class="tip-box">
+        <div class="tip-title">💡 면접장 분위기 및 프로세스 참고사항</div>
+        <ul class="tip-list">
+            <li><strong>인성검사 선행:</strong> 실제 면접장에 들어가기 전, 대기 공간 단계에서 인성검사를 우선적으로 실시하였습니다.</li>
+            <li><strong>온화한 분위기 유지:</strong> 전반적인 면접 분위기는 압박을 가하지 않고 편안하게 대답할 수 있도록 면접관분들이 조율해 주셨습니다.</li>
+        </ul>
+    </div>
+
+    <!-- 면접장 배치도 영역 -->
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (지원자 1 : 면접관 4 다대일 레이아웃)</div>
+        <div class="room-layout">
+            <div class="row">
+                <div class="box interviewer">면접관 1</div>
+                <div class="box interviewer">면접관 2</div>
+                <div class="box interviewer">면접관 3</div>
+                <div class="box interviewer">면접관 4</div>
+            </div>
+            
+            <div class="main-table">대면 면접 테이블</div>
+            
+            <div class="row">
+                <div class="box interviewee">지원자 (1명)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 🚨 상황면접 세부 분석 섹션 ================= -->
+    <div class="section-main-title" style="background-color: #c2410c;">📋 2025학년도 실전 상황면접 과제</div>
+    
+    <div class="qa-list">
+        <div class="qa-card" style="border-left: 5px solid #c2410c;">
+            <div class="question-title"><span class="question-num situation">상황 과제</span> [철도 차량정비 실전 직무 연계 과제]</div>
+            <div style="background-color: #fffbfa; border: 1px solid #ffedd5; padding: 18px; border-radius: 6px; font-size: 0.98rem; color: #7c2d12; margin-bottom: 12px; font-line: 1.5; white-space: pre-wrap;">"차량직무에서 KTX-산천을 정비한 후, 출고하여 운행 일정을 맞추어야 합니다. 그런데 열차 주변압기 절연저항에서 '경계' 신호가 계속 울립니다.
+
+육안과 기본검사에서는 아무 이상이 나타나지 않는데, 정밀 부품을 교체하거나 수리하기에는 시간이 매우 오래 걸리는 상황입니다.
+
+당신은 문제를 끝까지 해결하고 안전을 확보할 것입니까, 아니면 간단한 조치 후 예정에 맞게 열차를 운행할 것입니까?"</div>
+            <div class="question-title" style="font-size: 1rem; margin-top: 15px; color: #222;">▶ 정비 직무 핵심 가이드</div>
+            <pre class="answer-box">공공기관 철도 오퍼레이팅의 최고 가치인 '철도 안전 의식'과 운행 스케줄을 준수하는 '정시성 및 효율성' 가치가 격렬히 충돌하는 대표적인 딜레마 상황입니다. 
+정비 오류나 절연 파괴가 대형 철도 사고로 번질 수 있음을 인지하고, 본인만의 안전 조치 매응책 및 상사 보고 체계 프로세스를 논리적으로 정리해 가야 합니다.</pre>
+        </div>
+    </div>
+
+    <!-- ================= 📂 인성 및 기술면접 섹션 ================= -->
+    <div class="section-main-title">📂 실전 인성 & 기술 종합면접 기출 문항</div>
+
+    <div class="qa-list">
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 01</span> 면접을 시작하며 준비해 온 자기소개를 편안하게 해보세요.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 02</span> 현장에서 직속 상사나 선배가 직무 윤리적으로 부당한 행위를 지시하는 경우에 신입사원으로서 어떻게 대처할 것입니까?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 03</span> 현업 부서 내에서 함께 소통하거나 협업하기 대단히 힘든 성향의 팀원이 조에 배정되어 있을 경우, 어떻게 관계를 풀어나갈 것인가요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 04</span> [전공 기술 질문] 철도차량정비 직무 지원자로서, 우리나라의 일반 KTX 열차와 'KTX-산천' 열차의 기술적·구조적 차이점을 알고 있다면 간략히 설명해 보세요.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
